@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
+// import UpdateFunctions from './updateFunctions';
 
 class App extends Component {
 
@@ -14,12 +15,7 @@ class App extends Component {
  } 
 
  componentDidMount() {
-  axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD')
-    .then(res=> {
-      const cryptos = res.data;
-      console.log(cryptos);
-      this.setState({cryptos: cryptos})
-    })
+  this.updateData()
  }
 
   render() {
@@ -33,9 +29,21 @@ class App extends Component {
           </div>
 
           ))}
+            <button onClick={this.updateData.bind(this)}>Update Data</button>
       </div>
     );
   }
+
+  updateData() {
+    console.log('updateData funtion called')
+    axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD')
+      .then(res => {
+        const cryptos = res.data;
+        console.log(cryptos);
+        this.setState({ cryptos: cryptos })
+      })
+  }  
+ 
 }
 
 export default App;
