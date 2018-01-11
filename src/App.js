@@ -5,6 +5,7 @@ import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NAVBar from './NAVBar.js';
+import RaisedButtonSimple from './RaisedButton.js'
 
 
 class App extends Component {
@@ -25,10 +26,10 @@ class App extends Component {
   render() {
 
       console.log('NAVBar ', NAVBar);
-      <NAVBar />
       return (
-        <div className="App">
 
+        <MuiThemeProvider>
+          <NAVBar />
           {Object.keys(this.state.cryptos).map((key) => (
 
             <div id="crypto-container">
@@ -36,9 +37,9 @@ class App extends Component {
               <span className="right"><NumberFormat value={this.state.cryptos[key].USD} displayType={'text'} decimalPrecision={2} thousandSeparator={true} prefix={'$'} /></span>
             </div>
             ))}
-             <button onClick={this.updateData}>Update Data</button>
-
-        </div>
+          <RaisedButtonSimple onClick={this.props.updateData} />  
+          <button onClick={this.updateData}>Update</button>
+        </MuiThemeProvider>
       );
 
   }
@@ -51,7 +52,7 @@ class App extends Component {
         console.log(cryptos);
         this.setState({ cryptos: cryptos })
       })
-  }  
+  }
  
 }
 
