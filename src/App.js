@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import './App.css';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
-// import UpdateFunctions from './updateFunctions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import NAVBar from './NAVBar.js';
+import RaisedButtonSimple from './RaisedButton.js'
+
 
 class App extends Component {
 
@@ -18,23 +22,29 @@ class App extends Component {
   this.updateData()
  }
 
+
   render() {
-    return (
-      <div className="App">
-        {Object.keys(this.state.cryptos).map((key) => (
 
-          <div id="crypto-container">
-            <span className="left">{key}</span>
-            <span className="right"><NumberFormat value={this.state.cryptos[key].USD} displayType={'text'} decimalPrecision={2} thousandSeparator={true} prefix={'$'} /></span>
-          </div>
+      console.log('NAVBar ', NAVBar);
+      return (
 
-          ))}
-            <button onClick={this.updateData.bind(this)}>Update Data</button>
-      </div>
-    );
+        <MuiThemeProvider>
+          <NAVBar />
+          {Object.keys(this.state.cryptos).map((key) => (
+
+            <div id="crypto-container">
+              <span className="left">{key}</span>
+              <span className="right"><NumberFormat value={this.state.cryptos[key].USD} displayType={'text'} decimalPrecision={2} thousandSeparator={true} prefix={'$'} /></span>
+            </div>
+            ))}
+          <RaisedButtonSimple onClick={this.props.updateData} />  
+          <button onClick={this.updateData}>Update</button>
+        </MuiThemeProvider>
+      );
+
   }
 
-  updateData() {
+  updateData = () => {
     console.log('updateData funtion called')
     axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD')
       .then(res => {
@@ -42,7 +52,7 @@ class App extends Component {
         console.log(cryptos);
         this.setState({ cryptos: cryptos })
       })
-  }  
+  }
  
 }
 
