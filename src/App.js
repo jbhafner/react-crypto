@@ -4,6 +4,7 @@ import Home from './Home';
 import AddCoins from './AddCoins';
 import Blog from './Blog';
 import FAQ from './FAQ';
+import XBTFairValueCalc from './XBTFairValueCalc'
 import ContactUs from './ContactUs';
 import Login from './Login';
 
@@ -17,6 +18,7 @@ import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import NAVBar from './NAVBar.js';
 import RaisedButtonSimple from './RaisedButton.js'
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 const paperStyle = {
     height: '85%',
@@ -59,6 +61,10 @@ class App extends Component {
     this.setState({show:'faq', open: false})
   }
 
+  showXBT_FV = () => {
+    this.setState({show:'xbt_fv', open: false})
+  }
+
   showContact = () => {
     this.setState({show: 'contact', open: false})
   }
@@ -87,6 +93,10 @@ class App extends Component {
           case 'faq':
               content = (<FAQ/>);
               break;
+
+          case 'xbt_fv':
+              content = (<XBTFairValueCalc/>);
+              break;    
 
           case 'contact':
               content = (<ContactUs/>);
@@ -120,6 +130,21 @@ class App extends Component {
               <MenuItem onClick={this.showHome}>Home</MenuItem>
               <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
               <MenuItem onClick={this.showBlog}>Blog</MenuItem>
+              <MenuItem 
+                  primaryText="Trading"
+                  rightIcon={<ArrowDropRight />}
+
+                      rightIcon={<ArrowDropRight />}
+                      menuItems={[
+                        <MenuItem onClick={this.showXBT_FV} primaryText="Bitcoin Futures Fair Value Calculator" />,
+                        <MenuItem primaryText="Other1" />,
+                        <MenuItem primaryText="Other2" />,
+                        <MenuItem primaryText="Other3" />,
+                      ]}
+  
+              />  
+    
+
               <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
               <MenuItem onClick={this.showContact}>Contact</MenuItem>
               <MenuItem onClick={this.showLogin}>Login</MenuItem>
