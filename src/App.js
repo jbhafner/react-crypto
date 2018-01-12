@@ -142,8 +142,7 @@ class App extends Component {
               <span className="right"><NumberFormat value={this.state.cryptos[key].USD} displayType={'text'} decimalPrecision={2} thousandSeparator={true} prefix={'$'} /></span>
             </div>
             ))}
-          <RaisedButtonSimple onClick={this.props.updateData} />  
-          <button onClick={this.updateData}>Update</button>
+          <RaisedButtonSimple handleClick={this.updateData} />  
         </div>
       );
 
