@@ -1,35 +1,140 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
+
+import Home from './Home';
+import AddCoins from './AddCoins';
+import Blog from './Blog';
+import FAQ from './FAQ';
+import ContactUs from './ContactUs';
+import Login from './Login';
+
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
+import {Toolbar, ToolbarTitle} from 'material-ui/Toolbar';
 import './App.css';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NAVBar from './NAVBar.js';
 import RaisedButtonSimple from './RaisedButton.js'
 
+const paperStyle = {
+    height: '85%',
+    width: "85%",
+    margin: '7%',
+    textAlign: 'center',
+    display: 'inline-block',
+};
 
 class App extends Component {
-
  constructor(props) {
   super(props);
 
   this.state = {
-    cryptos: []
+    cryptos: [],
+    "open": false,
+    "show": null
   };
  } 
 
- componentDidMount() {
-  this.updateData()
- }
+   componentDidMount() {
+    this.updateData()
+   }
 
+   handleToggle = () => this.setState({open: !this.state.open});
+
+  showHome = () => {
+    this.setState({show: 'home', open: false})
+  }
+
+  showAddCoins = () => {
+    this.setState({show: 'addCoins', open: false})
+  }
+
+  showBlog = () => {
+    this.setState({show:'blog', open: false})
+  }
+
+  showFAQ = () => {
+    this.setState({show:'faq', open: false})
+  }
+
+  showContact = () => {
+    this.setState({show: 'contact', open: false})
+  }
+
+  showLogin = () => {
+    this.setState({show:"login", open: false})
+  }
 
   render() {
-
+    let content = null;
       console.log('NAVBar ', NAVBar);
-      return (
 
-        <MuiThemeProvider>
-          <NAVBar />
+      switch(this.state.show) {
+          case 'home':
+              content = (<Home/>);
+              break; 
+
+          case 'addCoins':
+              content = (<AddCoins/>);
+              break;
+
+          case 'blog':
+              content = (<Blog/>);
+              break;
+
+          case 'faq':
+              content = (<FAQ/>);
+              break;
+
+          case 'contact':
+              content = (<ContactUs/>);
+              break;
+
+          case 'login':
+              content = (<Login/>);
+              break;                      
+
+          default:
+              content = <h1>Waiting</h1>
+      }
+
+
+      return (
+        <div className="App">
+
+          <AppBar 
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            title="cryptoTracker"
+            onLeftIconButtonClick={this.handleToggle}
+          />
+
+          <Drawer
+            docked={false}
+            width={200}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}>
+
+            <AppBar title="AppBar"/>
+              <MenuItem onClick={this.showHome}>Home</MenuItem>
+              <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
+              <MenuItem onClick={this.showBlog}>Blog</MenuItem>
+              <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
+              <MenuItem onClick={this.showContact}>Contact</MenuItem>
+              <MenuItem onClick={this.showLogin}>Login</MenuItem>
+          </Drawer>
+
+          <Paper style={paperStyle} zDepth={5}>
+            <Toolbar style={{"justifyContent": "center"}}>
+              <ToolbarTitle text="Welcome to cryptoTracker"/>
+            </Toolbar>
+            {content}
+            <p>Click the icon on the AppBar to open the Drawer and then pick a menu item.  The text above should change.</p>
+          </Paper>    
+
+
+
           {Object.keys(this.state.cryptos).map((key) => (
 
             <div id="crypto-container">
@@ -39,7 +144,7 @@ class App extends Component {
             ))}
           <RaisedButtonSimple onClick={this.props.updateData} />  
           <button onClick={this.updateData}>Update</button>
-        </MuiThemeProvider>
+        </div>
       );
 
   }

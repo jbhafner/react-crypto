@@ -8,9 +8,6 @@ const style = {
 const RaisedButtonSimple = () => (
   <div>
     <RaisedButton label="Update" primary={true} style={style} />
-    <br />
-    <br />
-    <RaisedButton label="Full width" fullWidth={true} />
   </div>
 );
 

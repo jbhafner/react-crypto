@@ -1,5 +1,9 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem'
+import FlatButton from 'material-ui/FlatButton';
 
 /**
  * A simple example of `AppBar` with an icon on the right.
@@ -8,8 +12,9 @@ import AppBar from 'material-ui/AppBar';
 console.log('NAVBar.js called') 
 const NAVBar = () => (
   <AppBar
-    title="Crypto Tracker"
+    title="Crypto Tracker"  
     iconClassNameRight="muidocs-icon-navigation-expand-more"
+
   />
 );
 
