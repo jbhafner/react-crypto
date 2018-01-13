@@ -133,7 +133,6 @@ class App extends Component {
               <MenuItem 
                   primaryText="Trading"
                   rightIcon={<ArrowDropRight />}
-
                       rightIcon={<ArrowDropRight />}
                       menuItems={[
                         <MenuItem onClick={this.showXBT_FV} primaryText="Bitcoin Futures Fair Value Calculator" />,
@@ -141,7 +140,6 @@ class App extends Component {
                         <MenuItem primaryText="Other2" />,
                         <MenuItem primaryText="Other3" />,
                       ]}
-  
               />  
     
 
