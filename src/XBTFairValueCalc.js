@@ -93,7 +93,6 @@ class XBTFairValueCalc extends Component {
 	          value={this.state.daysTilExpiry}
 	          type="number"          
 	          onChange={e => this.change(e)}
-	          type="number"
 	          floatingLabelFixed
 	        />
 	        <br />
@@ -104,7 +103,6 @@ class XBTFairValueCalc extends Component {
 	          value={this.state.contSize}
 	          type="number"          
 	          onChange={e => this.change(e)}
-	          type="number"
 	          floatingLabelFixed
 	        />
 	        <br />        

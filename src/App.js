@@ -4,9 +4,11 @@ import Home from './Home';
 import AddCoins from './AddCoins';
 import Blog from './Blog';
 import FAQ from './FAQ';
+import FVArticle from './FVArticle';
 import XBTFairValueCalc from './XBTFairValueCalc'
 import ContactUs from './ContactUs';
 import Login from './Login';
+import cryptoLogo from './cryptoLogo.png';
 
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -61,12 +63,16 @@ class App extends Component {
     this.setState({show:'faq', open: false})
   }
 
+  showFVArticle = () => {
+    this.setState({show:'fvArticle', open: false})
+  }
+
   showXBT_FV = () => {
     this.setState({show:'xbt_fv', open: false})
   }
 
   showContact = () => {
-    this.setState({show: 'contact', open: false})
+    this.setState({show:'contact', open: false})
   }
 
   showLogin = () => {
@@ -94,6 +100,10 @@ class App extends Component {
               content = (<FAQ/>);
               break;
 
+          case 'fvArticle':
+              content = (<FVArticle/>);
+              break;
+
           case 'xbt_fv':
               content = (<XBTFairValueCalc/>);
               break;    
@@ -113,10 +123,15 @@ class App extends Component {
 
       return (
         <div className="App">
+          
+          <div>
+            <img src={cryptoLogo} />
+          </div>
 
           <AppBar 
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             title="cryptoTracker"
+
             onLeftIconButtonClick={this.handleToggle}
           />
 
@@ -125,7 +140,6 @@ class App extends Component {
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})}>
-
             <AppBar title="AppBar"/>
               <MenuItem onClick={this.showHome}>Home</MenuItem>
               <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
@@ -133,10 +147,10 @@ class App extends Component {
               <MenuItem 
                   primaryText="Trading"
                   rightIcon={<ArrowDropRight />}
-                      rightIcon={<ArrowDropRight />}
                       menuItems={[
+                        <MenuItem onClick={this.showFVArticle} primaryText="Bitcoin Futures Article" />,                        
                         <MenuItem onClick={this.showXBT_FV} primaryText="Bitcoin Futures Fair Value Calculator" />,
-                        <MenuItem primaryText="Other1" />,
+
                         <MenuItem primaryText="Other2" />,
                         <MenuItem primaryText="Other3" />,
                       ]}
@@ -149,6 +163,7 @@ class App extends Component {
           </Drawer>
 
           <Paper style={paperStyle} zDepth={5}>
+
             <Toolbar style={{"justifyContent": "center"}}>
               <ToolbarTitle text="Welcome to cryptoTracker"/>
             </Toolbar>
