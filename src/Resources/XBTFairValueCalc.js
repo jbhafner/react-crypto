@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import FVDialog from "./FVDialog";
+import Example from "./Example";
 
 let fvCalcResults = null;
+
 class XBTFairValueCalc extends Component {
   state = {
     futPrice: 18020,
@@ -11,7 +13,11 @@ class XBTFairValueCalc extends Component {
     numIntRate: 0.0,
     denomIntRate: 1.4438,
     daysTilExpiry: 64,
-    contSize: 1
+    contSize: 1,
+    fairSummary1: "",
+    fairSummary2: "",
+    fairSummary3: "",
+    fairSummary4: ""            
   };
 
   change = e => {
@@ -110,6 +116,12 @@ class XBTFairValueCalc extends Component {
         <div>
           Calc Results go here:
           {this.calcData.fvCalcResults}
+          <Example 
+            fairSummary1={this.state.fairSummary1} 
+            fairSummary2={this.state.fairSummary2}       
+            fairSummary3={this.state.fairSummary3}    
+            fairSummary4={this.state.fairSummary4}                                
+          />
         </div>
       </form>
     );
@@ -193,6 +205,12 @@ class XBTFairValueCalc extends Component {
     // $("#fairValueCalc3").html(fairSummary3);
     // $("#fairValueCalc4").html(fairSummary4);
     fvCalcResults = "Calculation Finished!";
+    this.setState({
+      fairSummary1,
+      fairSummary2,
+      fairSummary3,
+      fairSummary4
+    });
   };
 }
 
