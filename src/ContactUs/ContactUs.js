@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 
 class ContactUs extends Component {
+	state = { showing: true };
+
 	render() {
-		return(<h1>You Picked Contact Us</h1>)
+		const { showing } = this.state;
+		return(
+         <div>
+             <button onClick={() => this.setState({ showing: !showing })}>toggle</button>
+             { showing 
+                 ? <div>This is visible</div>
+                 : null
+             }
+         </div> 
+		)
 	}
 }
 

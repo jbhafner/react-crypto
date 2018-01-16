@@ -1,8 +1,116 @@
 import React, { Component } from 'react';
+// import Images from '../images/';
+// console.log('Images ', Images);
 
 class Blog extends Component {
 	render() {
-		return(<h1>You Picked Blog</h1>)
+		return(
+			<div>
+				<h1><center>Current Cryptocurrency News</center></h1>
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src={import("./bitcoin-top.gif")} alt={"coin"} height="120" width="120"/></div>
+				    <section>
+				      <header>
+				        <h2>What is Bitcoin?</h2>
+				      </header>
+				      <br/>
+				        <blockquote>Bitcoin is a new currency that was created in 2009 by an unknown person using the alias Satoshi Nakamoto. Transactions are made with no middle men – meaning, no banks! Bitcoin can be used to book hotels on Expedia, shop for furniture on Overstock and buy Xbox games. But much of the hype is about getting rich by trading it. The price of bitcoin skyrocketed into the thousands in 2017.</blockquote>  
+
+				        <p><a href="https://www.coindesk.com/information/what-is-bitcoin/" target="_blank" rel="noopener noreferrer" class="more-link">Read More</a></p>
+ 
+				  </section>
+				  </div>
+				</div>  
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src="images/bitcoin-why.png" alt="coin" height="120" width="120"/></div>
+				    <article>
+				      <header>
+				        <h2>Why BitCoin?</h2>
+				      </header>
+				      <br/>
+				        <p>Bitcoins can be used to buy merchandise anonymously. In addition, international payments are easy and cheap because bitcoins are not tied to any country or subject to regulation. Small businesses may like them because there are no credit card fees. Some people just buy bitcoins as an investment, hoping that they’ll go up in value.</p>  
+
+				        <p><a href="https://support.coinbase.com/customer/portal/articles/1824913-why-would-i-use-bitcoin-why-should-i-use-bitcoin-" target="_blank" rel="noopener noreferrer" class="more-link">Read More</a></p>
+
+				  </article>
+				  </div>
+				</div>  
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src="images/bitcoin-exchange.png" alt="coin" height="120" width="120"/></div>
+				    <article>
+				      <header>
+				        <h2>Acquiring Bitcoins</h2>
+				      </header>
+				      <br/>
+				        <p>Buy on an Exchange. Many marketplaces called “bitcoin exchanges” allow people to buy or sell bitcoins using different currencies. Coinbase is a leading exchange, along with Bitstamp and Bitfinex. But security can be a concern: bitcoins worth tens of millions of dollars were stolen from Bitfinex when it was hacked in 2016.</p> 
+				        <p>Transfers
+				        People can send bitcoins to each other using mobile apps or their computers. It’s similar to sending cash digitally.</p>
+				        <p>Mining
+				        People compete to “mine” bitcoins using computers to solve complex math puzzles. This is how bitcoins are created. Currently, a winner is rewarded with 12.5 bitcoins roughly every 10 minutes.</p>
+
+				        <a href="https://www.coindesk.com/information/how-can-i-buy-bitcoins/" class="more-link" target="_blank" rel="noopener noreferrer">Read More</a>
+
+				  </article>
+				  </div>
+				</div>   
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src="images/wallet2.png" alt="coin" height="120" width="120"/></div>
+				    <article>
+				      <header>
+				        <h2>Owning Bitcoins and Your Digital Wallet</h2>
+				      </header>
+				      <br/>
+				        <p>Bitcoins are stored in a “digital wallet,” which exists either in the cloud or on a user’s computer. The wallet is a kind of virtual bank account that allows users to send or receive bitcoins, pay for goods or save their money. Unlike bank accounts, bitcoin wallets are not insured by the FDIC.</p>
+				        <p>Wallet in cloud: Servers have been hacked. Companies have fled with clients’ Bitcoins.</p>  
+				        <p>Wallet on computer: You can accidentally delete them. Viruses could destroy them.</p>
+
+				        <a href="https://money.usnews.com/investing/investing-101/articles/2017-11-06/best-bitcoin-wallet-of-2018" target="_blank" rel="noopener noreferrer" class="more-link">Read More</a>
+
+				  </article>
+				  </div>
+				</div>     
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src="images/bitcoin-anonymity.png" alt="coin" height="120" width="140"/></div>
+				    <article>
+				      <header>
+				        <h2>Anonymity</h2>
+				      </header>
+				      <br/>
+				        <p>Though each bitcoin transaction is recorded in a public log, names of buyers and sellers are never revealed – only their wallet IDs. While that keeps bitcoin users’ transactions private, it also lets them buy or sell anything without easily tracing it back to them. That’s why it has become the currency of choice for people online buying drugs or other illicit activities.</p>
+
+				        <a href="https://www.technologyreview.com/s/608716/bitcoin-transactions-arent-as-anonymous-as-everyone-hoped/" target="_blank" rel="noopener noreferrer" class="more-link">Read More</a>
+
+				  </article>
+				  </div>
+				</div>     
+
+				<div class="wrap">
+				  <div class="post">
+				    <div class="feat-img"><img src="images/bitcoin-unknown.png" alt="coin" height="100" width="100"/></div>
+				    <article>
+				      <header>
+				        <h2>Future in question</h2>
+				      </header>
+				      <br/>
+				        <p>No one knows what will become of bitcoin. It is mostly unregulated, but some countries like Japan, China and Australia have begun weighing regulations. Governments are concerned about taxation and their lack of control over the currency.</p>
+
+				        <a href="https://www.cnbc.com/2017/12/01/james-altuchers-bitcoin-predictions.html" target="_blank" rel="noopener noreferrer" class="more-link">Read More</a>
+
+				  </article>
+				  </div>
+				</div> 
+			</div>
+		)
 	}
 }
 

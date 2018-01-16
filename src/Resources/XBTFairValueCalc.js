@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
-import FVDialog from "./FVDialog";
 import Example from "./Example";
-
-let fvCalcResults = null;
 
 class XBTFairValueCalc extends Component {
   state = {
@@ -204,7 +201,6 @@ class XBTFairValueCalc extends Component {
     // $("#fairValueCalc2").html(fairSummary2);
     // $("#fairValueCalc3").html(fairSummary3);
     // $("#fairValueCalc4").html(fairSummary4);
-    fvCalcResults = "Calculation Finished!";
     this.setState({
       fairSummary1,
       fairSummary2,
