@@ -10,15 +10,15 @@ import registerServiceWorker from "./registerServiceWorker";
 
 // const muiTheme = getMuiTheme(darkBaseTheme);
 
-const muiTheme = getMuiTheme(lightBaseTheme);
+// const muiTheme = getMuiTheme(lightBaseTheme);
 
 // Indigo500 / Blue500
-// const muiTheme = getMuiTheme ({
-// 	palette: {
-// 		primary1Color: "#3F51B5",
-// 		accent1Color: "#2196F3"
-// 	}
-// });
+const muiTheme = getMuiTheme ({
+	palette: {
+		primary1Color: "#3F51B5",
+		accent1Color: "#2196F3"
+	}
+});
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>

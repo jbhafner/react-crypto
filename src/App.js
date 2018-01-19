@@ -128,7 +128,7 @@ class App extends Component {
 
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title={cryptoLogo}
+          title="CryptoTracker"
           onLeftIconButtonClick={this.handleToggle}
         />
 
@@ -138,7 +138,7 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title={cryptoLogo} />
+          <AppBar title="CryptoTracker" />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
           <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
@@ -166,11 +166,9 @@ class App extends Component {
         </Drawer>
 
         <Paper style={paperStyle} zDepth={5}>
-          <Toolbar style={{ justifyContent: "center" }}>
-            <ToolbarTitle text="Welcome to cryptoTracker" />
-          </Toolbar>
+  
           {content}
-          <p>This is a placeholder</p>
+
         </Paper>
 
         <Paper style={paperStyle} zDepth={5}>

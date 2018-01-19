@@ -24,7 +24,7 @@ class FAQ extends Component {
     const { showing } = this.state;
     return (
       <div>
-        <Paper style={paperStyle} zDepth={5}>
+
             <div class="wrapper">
 
               <h1>
@@ -58,7 +58,7 @@ class FAQ extends Component {
                 <br />
               </div>
             </div>
-          </Paper>  
+  
       </div>
     );
   }

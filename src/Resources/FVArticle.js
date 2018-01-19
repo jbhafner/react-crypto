@@ -14,7 +14,7 @@ class FvArticle extends Component {
   render() {
     return (
       <div>
-        <Paper style={paperStyle} zDepth={5}>
+
           <h1>Bitcoin Futures Explained</h1>
 
           <blockquote>
@@ -62,7 +62,7 @@ class FvArticle extends Component {
           <blockquote>
           		This is for informational purposes only.  You should not attempt these trades unless you are an experienced investor.
           </blockquote>
-        </Paper>   
+ 
 
       </div>
     );

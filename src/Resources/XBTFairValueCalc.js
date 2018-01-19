@@ -56,7 +56,7 @@ class XBTFairValueCalc extends Component {
 
   render() {
     return (
-      <Paper style={paperStyle} zDepth={5}>
+
         <form>
           <h1>Bitcoin Futures Fair Value Calculator</h1>
           <TextField
@@ -131,7 +131,7 @@ class XBTFairValueCalc extends Component {
             />
           </div>
         </form>
-      </Paper>  
+
     );
   }
 

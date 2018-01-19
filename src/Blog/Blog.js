@@ -3,6 +3,15 @@ import Paper from "material-ui/Paper";
 // import Images from '../images/';
 // console.log('Images ', Images);
 
+import bitCoinAnonymity from './bitcoin-anonymity.png';
+import bitCoinExchange from './bitcoin-exchange.png';
+import bitCoinTop from './bitcoin-top.gif';
+import bitCoinUnknown from './bitcoin-unknown.png';
+import bitCoinWallet from './bitcoin-wallet.png';
+import bitCoinWhy from './bitcoin-why.png';
+import wallet2 from './wallet2.png';
+
+
 const paperStyle = {
   height: "85%",
   width: "85%",
@@ -15,12 +24,12 @@ class Blog extends Component {
 	render() {
 		return(
 			<div>
-				<Paper style={paperStyle} zDepth={5}>
+
 					<h1><center>Current Cryptocurrency News</center></h1>
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src={import("./bitcoin-top.gif")} alt={"coin"} height="120" width="120"/></div>
+					    <div class="feat-img"><img src={bitCoinTop} alt={"coin"} height="120" width="120"/></div>
 					    <section>
 					      <header>
 					        <h2>What is Bitcoin?</h2>
@@ -36,7 +45,7 @@ class Blog extends Component {
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src="images/bitcoin-why.png" alt="coin" height="120" width="120"/></div>
+					    <div class="feat-img"><img src={bitCoinWhy} alt="coin" height="120" width="120"/></div>
 					    <article>
 					      <header>
 					        <h2>Why BitCoin?</h2>
@@ -52,7 +61,7 @@ class Blog extends Component {
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src="images/bitcoin-exchange.png" alt="coin" height="120" width="120"/></div>
+					    <div class="feat-img"><img src={bitCoinExchange} alt="coin" height="120" width="120"/></div>
 					    <article>
 					      <header>
 					        <h2>Acquiring Bitcoins</h2>
@@ -72,7 +81,7 @@ class Blog extends Component {
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src="images/wallet2.png" alt="coin" height="120" width="120"/></div>
+					    <div class="feat-img"><img src={wallet2} alt="coin" height="120" width="120"/></div>
 					    <article>
 					      <header>
 					        <h2>Owning Bitcoins and Your Digital Wallet</h2>
@@ -90,7 +99,7 @@ class Blog extends Component {
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src="images/bitcoin-anonymity.png" alt="coin" height="120" width="140"/></div>
+					    <div class="feat-img"><img src={bitCoinAnonymity} alt="coin" height="120" width="140"/></div>
 					    <article>
 					      <header>
 					        <h2>Anonymity</h2>
@@ -106,7 +115,7 @@ class Blog extends Component {
 
 					<div class="wrap">
 					  <div class="post">
-					    <div class="feat-img"><img src="images/bitcoin-unknown.png" alt="coin" height="100" width="100"/></div>
+					    <div class="feat-img"><img src={bitCoinUnknown} alt="coin" height="100" width="100"/></div>
 					    <article>
 					      <header>
 					        <h2>Future in question</h2>
@@ -119,7 +128,7 @@ class Blog extends Component {
 					  </article>
 					  </div>
 					</div> 
-				</Paper>	
+
 			</div>
 		)
 	}
