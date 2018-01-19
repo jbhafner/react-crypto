@@ -128,7 +128,7 @@ class App extends Component {
 
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title="cryptoTracker"
+          title={cryptoLogo}
           onLeftIconButtonClick={this.handleToggle}
         />
 
@@ -138,7 +138,7 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="AppBar" />
+          <AppBar title={cryptoLogo} />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
           <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
@@ -173,21 +173,27 @@ class App extends Component {
           <p>This is a placeholder</p>
         </Paper>
 
-        {Object.keys(this.state.cryptos).map(key => (
-          <div id="crypto-container">
-            <span className="left">{key}</span>
-            <span className="right">
-              <NumberFormat
-                value={this.state.cryptos[key].USD}
-                displayType={"text"}
-                decimalPrecision={2}
-                thousandSeparator={true}
-                prefix={"$"}
-              />
-            </span>
-          </div>
-        ))}
-        <RaisedButtonSimple handleClick={this.updateData} />
+        <Paper style={paperStyle} zDepth={5}>
+          <Toolbar style={{ justifyContent: 'center'}}>
+            <ToolbarTitle text="Current Cryptocurrency Quotes" />
+          </Toolbar>  
+          <br />
+          {Object.keys(this.state.cryptos).map(key => (
+            <div id="crypto-container">
+              <span className="left">{key}</span>
+              <span className="right">
+                <NumberFormat
+                  value={this.state.cryptos[key].USD}
+                  displayType={"text"}
+                  decimalPrecision={2}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
+              </span>
+            </div>
+          ))}
+          <RaisedButtonSimple handleClick={this.updateData} />
+        </Paper>  
       </div>
     );
   }

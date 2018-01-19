@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./App";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import registerServiceWorker from "./registerServiceWorker";
 
-const muiTheme = getMuiTheme(darkBaseTheme);
+// const muiTheme = getMuiTheme(darkBaseTheme);
+
+const muiTheme = getMuiTheme(lightBaseTheme);
 
 // Indigo500 / Blue500
 // const muiTheme = getMuiTheme ({

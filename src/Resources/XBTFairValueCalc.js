@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
+import Paper from "material-ui/Paper";
+
+const paperStyle = {
+  height: "85%",
+  width: "85%",
+  margin: "7%",
+  textAlign: "center",
+  display: "inline-block"
+};
 
 class XBTFairValueCalc extends Component {
   state = {
@@ -47,80 +56,82 @@ class XBTFairValueCalc extends Component {
 
   render() {
     return (
-      <form>
-        <h1>Bitcoin Futures Fair Value Calculator</h1>
-        <TextField
-          name="futPrice"
-          hintText="Bitcoin Futures Price"
-          floatingLabelText="Bitcoin Futures Price"
-          value={this.state.futPrice}
-          type="number"
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="spotPrice"
-          hintText="Bitcoin Spot Price"
-          floatingLabelText="Bitcoin Spot Price"
-          value={this.state.spotPrice}
-          onChange={e => this.change(e)}
-          type="number"
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="numIntRate"
-          hintText="Bitcoin Interest Rate (zero for now)"
-          floatingLabelText="Bitcoin Interest Rate (%)"
-          value={this.state.numIntRate}
-          type="number"
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="denomIntRate"
-          hintText="USD Int. Rate(%)"
-          floatingLabelText="USD Int. Rate (%)"
-          value={this.state.denomIntRate}
-          type="number"
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="daysTilExpiry"
-          hintText="Days until contract expiry"
-          floatingLabelText="Days until contract expiry"
-          value={this.state.daysTilExpiry}
-          type="number"
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="contSize"
-          hintText="Contract Size"
-          floatingLabelText="Contract Size"
-          value={this.state.contSize}
-          type="number"
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <CalcButton label="Calculate" handleClick={this.calcData} />
-        <div>
-          Calc Results go here:
-          {this.calcData.fvCalcResults}
-          <Example 
-            fairSummary1={this.state.fairSummary1} 
-            fairSummary2={this.state.fairSummary2}       
-            fairSummary3={this.state.fairSummary3}    
-            fairSummary4={this.state.fairSummary4}                                
+      <Paper style={paperStyle} zDepth={5}>
+        <form>
+          <h1>Bitcoin Futures Fair Value Calculator</h1>
+          <TextField
+            name="futPrice"
+            hintText="Bitcoin Futures Price"
+            floatingLabelText="Bitcoin Futures Price"
+            value={this.state.futPrice}
+            type="number"
+            onChange={e => this.change(e)}
+            floatingLabelFixed
           />
-        </div>
-      </form>
+          <br />
+          <TextField
+            name="spotPrice"
+            hintText="Bitcoin Spot Price"
+            floatingLabelText="Bitcoin Spot Price"
+            value={this.state.spotPrice}
+            onChange={e => this.change(e)}
+            type="number"
+            floatingLabelFixed
+          />
+          <br />
+          <TextField
+            name="numIntRate"
+            hintText="Bitcoin Interest Rate (zero for now)"
+            floatingLabelText="Bitcoin Interest Rate (%)"
+            value={this.state.numIntRate}
+            type="number"
+            onChange={e => this.change(e)}
+            floatingLabelFixed
+          />
+          <br />
+          <TextField
+            name="denomIntRate"
+            hintText="USD Int. Rate(%)"
+            floatingLabelText="USD Int. Rate (%)"
+            value={this.state.denomIntRate}
+            type="number"
+            onChange={e => this.change(e)}
+            floatingLabelFixed
+          />
+          <br />
+          <TextField
+            name="daysTilExpiry"
+            hintText="Days until contract expiry"
+            floatingLabelText="Days until contract expiry"
+            value={this.state.daysTilExpiry}
+            type="number"
+            onChange={e => this.change(e)}
+            floatingLabelFixed
+          />
+          <br />
+          <TextField
+            name="contSize"
+            hintText="Contract Size"
+            floatingLabelText="Contract Size"
+            value={this.state.contSize}
+            type="number"
+            onChange={e => this.change(e)}
+            floatingLabelFixed
+          />
+          <br />
+          <CalcButton label="Calculate" handleClick={this.calcData} />
+          <div>
+            Calc Results go here:
+            {this.calcData.fvCalcResults}
+            <Example 
+              fairSummary1={this.state.fairSummary1}
+              fairSummary2={this.state.fairSummary2}       
+              fairSummary3={this.state.fairSummary3}    
+              fairSummary4={this.state.fairSummary4}                                
+            />
+          </div>
+        </form>
+      </Paper>  
     );
   }
 
