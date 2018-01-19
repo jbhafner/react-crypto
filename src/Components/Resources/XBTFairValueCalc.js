@@ -2,15 +2,6 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
-import Paper from "material-ui/Paper";
-
-const paperStyle = {
-  height: "85%",
-  width: "85%",
-  margin: "7%",
-  textAlign: "center",
-  display: "inline-block"
-};
 
 class XBTFairValueCalc extends Component {
   state = {

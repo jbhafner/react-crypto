@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./Components/App/App.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
 import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";

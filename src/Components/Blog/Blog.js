@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
-import Paper from "material-ui/Paper";
-// import Images from '../images/';
-// console.log('Images ', Images);
 
-import bitCoinAnonymity from './bitcoin-anonymity.png';
-import bitCoinExchange from './bitcoin-exchange.png';
-import bitCoinTop from './bitcoin-top.gif';
-import bitCoinUnknown from './bitcoin-unknown.png';
-import bitCoinWallet from './bitcoin-wallet.png';
-import bitCoinWhy from './bitcoin-why.png';
-import wallet2 from './wallet2.png';
-
-
-const paperStyle = {
-  height: "85%",
-  width: "85%",
-  margin: "7%",
-  textAlign: "center",
-  display: "inline-block"
-};
+import bitCoinAnonymity from './blogImages/bitcoin-anonymity.png';
+import bitCoinExchange from './blogImages/bitcoin-exchange.png';
+import bitCoinTop from './blogImages/bitcoin-top.gif';
+import bitCoinUnknown from './blogImages/bitcoin-unknown.png';
+import bitCoinWhy from './blogImages/bitcoin-why.png';
+import wallet2 from './blogImages/wallet2.png';
 
 class Blog extends Component {
 	render() {

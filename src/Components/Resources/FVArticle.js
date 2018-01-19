@@ -1,14 +1,4 @@
 import React, { Component } from "react";
-import Paper from "material-ui/Paper";
-
-const paperStyle = {
-  height: "85%",
-  width: "85%",
-  margin: "7%",
-  textAlign: "center",
-  display: "inline-block"
-};
-
 
 class FvArticle extends Component {
   render() {

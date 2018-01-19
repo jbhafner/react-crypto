@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import Home from "./Home/Home";
-import AddCoins from "./AddCoins/AddCoins";
-import Blog from "./Blog/Blog";
-import FAQ from "./FAQ/FAQ";
-import FVArticle from "./Resources/FVArticle";
-import XBTFairValueCalc from "./Resources/XBTFairValueCalc";
-import ContactUs from "./ContactUs/ContactUs";
-import Login from "./Login/Login";
+import Home from "./Components/Home/Home";
+// import AddCoins from "./Components/AddCoins/AddCoins";
+import Blog from "./Components/Blog/Blog";
+import FAQ from "./Components/FAQ/FAQ";
+import FVArticle from "./Components/Resources/FVArticle";
+import XBTFairValueCalc from "./Components/Resources/XBTFairValueCalc";
+import ContactUs from "./Components/ContactUs/ContactUs";
+import Login from "./Components/Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
 
 import AppBar from "material-ui/AppBar";

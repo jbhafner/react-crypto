@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import Paper from "material-ui/Paper";
-
-const paperStyle = {
-  height: "85%",
-  width: "85%",
-  margin: "7%",
-  textAlign: "center",
-  display: "inline-block"
-};
 
 class FAQ extends Component {
   state = { showing: null };
 
   // { showing: 2 };
-
-
 
   handleClick = (id) => {
     this.setState({ showing: id })
