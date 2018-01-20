@@ -1,8 +1,14 @@
-/*body {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
   background: #f1f1f1;
   padding:50px;
-  background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
-}*/
+  background-image: url("../images/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 div#crypto-container {
   background:white;

@@ -4,6 +4,6 @@ body {
   font-family: sans-serif;
   background: #f1f1f1;
   padding:50px;
-  background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
+  background-image: ("../images/background.png");
 }
 
