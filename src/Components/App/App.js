@@ -118,15 +118,15 @@ class App extends Component {
         content = <Login />;
         break;
 
-      default:
-        content = <h1>Waiting</h1>;
+      // default:
+      //  content = <h1>Waiting</h1>;
     }
 
     return (
       <div className="App">
-        <div>
+        {/*<div>
           <img src={cryptoLogo} alt="CryptoLogo" width="100%" height ="125px"/>
-        </div>
+        </div>*/}
 
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
@@ -140,7 +140,7 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="CT-App" />
+          <AppBar title="CT"/>
           <MenuItem onClick={this.showHome}>Home</MenuItem>
           <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
