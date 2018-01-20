@@ -9,6 +9,7 @@ import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
 import Login from "../Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
+import backgroundImage from "../images/charnaTop.jpg";
 
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
@@ -27,7 +28,8 @@ const paperStyle = {
   width: "85%",
   margin: "7%",
   textAlign: "center",
-  display: "inline-block"
+  display: "inline-block",
+  backgroundImage: {backgroundImage}
 };
 
 class App extends Component {

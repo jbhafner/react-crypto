@@ -4,7 +4,7 @@ body {
   background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
 }
 
-div#crypto-container {
+div#coinList-container {
   background:white;
   width: 70%;
   margin: 0 auto 4px auto;
@@ -13,6 +13,7 @@ div#crypto-container {
 }
 
 span.left {
+  float:left;
   font-weight: bold;
 }
 
@@ -20,3 +21,15 @@ span.right {
   float:right;
 }
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+  border-spacing: 5px;
+}
+
+th, td {
+  padding: 15px;
+}
