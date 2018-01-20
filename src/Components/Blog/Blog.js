@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./blog.css";
 import bitCoinAnonymity from './blogImages/bitcoin-anonymity.png';
 import bitCoinExchange from './blogImages/bitcoin-exchange.png';
 import bitCoinTop from './blogImages/bitcoin-top.gif';
@@ -12,7 +12,7 @@ class Blog extends Component {
 		return(
 			<div>
 
-					<h1><center>Current Cryptocurrency News</center></h1>
+					<h1>Current Cryptocurrency News</h1>
 
 					<div class="wrap">
 					  <div class="post">

@@ -18,7 +18,7 @@ class AddCoins extends Component {
 	render() {
 		return(
 			<div>
-				<h1>Chose Coins to add to CrypoTracker</h1>
+				<h1>Choose Coins to add to your dashboard</h1>
 
 				{Object.keys(this.state.coinList).map(key => (
 					// <table id="header-row">

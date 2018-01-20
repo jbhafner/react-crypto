@@ -1,8 +1,8 @@
-body {
+/*body {
   background: #f1f1f1;
   padding:50px;
   background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
-}
+}*/
 
 div#crypto-container {
   background:white;
@@ -12,6 +12,10 @@ div#crypto-container {
   box-shadow: 1px 1px 0 lightgrey;
 }
 
+title {
+  font-size: 10px;
+}
+
 span.left {
   font-weight: bold;
 }
@@ -19,4 +23,16 @@ span.left {
 span.right {
   float:right;
 }
+
+h1 {
+  color: #003366;
+}
+
+h2 {
+  font-size: 36px;
+  color: #0b1a4d;
+}
+
+
+
 
