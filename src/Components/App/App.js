@@ -9,6 +9,7 @@ import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
 import Login from "../Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
+import crypto_logo from "../images/crypto_logo.png";
 import backgroundImage from "../images/charnaTop.jpg";
 
 import AppBar from "material-ui/AppBar";
@@ -125,14 +126,16 @@ class App extends Component {
     return (
       <div className="App">
         {/*<div>
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height ="125px"/>
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         </div>*/}
 
-        <AppBar
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title="CryptoTracker"
-          onLeftIconButtonClick={this.handleToggle}
-        />
+        <div className="logo">
+          <AppBar
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            title={<img src={crypto_logo} alt="logo"/>}
+            onLeftIconButtonClick={this.handleToggle}
+          />
+        </div>  
 
         <Drawer
           docked={false}
