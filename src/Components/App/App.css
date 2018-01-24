@@ -39,6 +39,18 @@ h2 {
   color: #0b1a4d;
 }
 
+/*blog images*/
+img {
+  height: 200px;
+  width: 250px;
+}
+
+/*logo in navbar*/
+.logo img {
+  height: 65px;
+  width: 300px;
+}
+
 
 
 
