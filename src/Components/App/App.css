@@ -1,13 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f1f1f1;
   padding:50px;
   background-image: url("../images/background.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.App {
+  margin-top: 10px;
 }
 
 div#crypto-container {
@@ -51,6 +55,19 @@ img {
   width: 300px;
 }
 
+.faq-question {
+  font-size: 36px;
+  color: #003366;
+}
 
+.faq-answer {
+  font-size: 20px;
+  color: #0b1a4d;
+}
+
+.resource {
+  text-align: left;
+  margin-left: 30px;
+}
 
 

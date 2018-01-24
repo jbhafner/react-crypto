@@ -153,15 +153,15 @@ class App extends Component {
             menuItems={[
               <MenuItem
                 onClick={this.showFVArticle}
-                primaryText="Bitcoin Futures Article"
+                primaryText="Cryptocurrency Resources"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
 
-              <MenuItem primaryText="Other2" />,
-              <MenuItem primaryText="Other3" />
+              // <MenuItem primaryText="Other2" />,
+              // <MenuItem primaryText="Other3" />
             ]}
           />
 
@@ -171,9 +171,9 @@ class App extends Component {
         </Drawer>
 
         <Paper style={paperStyle} zDepth={5}>
-  
-          {content}
-
+          <div className="react-component">
+            {content}
+          </div>
         </Paper>
 
         <Paper style={paperStyle} zDepth={5}>

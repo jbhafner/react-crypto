@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+// import "./contact.css";
 
 class ContactUs extends Component {
-	state = { showing: true };
-
 	render() {
-		const { showing } = this.state;
 		return(
-         <div>
-             <button onClick={() => this.setState({ showing: !showing })}>toggle</button>
-             { showing 
-                 ? <div>This is visible</div>
-                 : null
-             }
-         </div> 
-		)
-	}
+         <div class="container">
+            
+        </div>
+
+
+        )
+    }
 }
+
+
 
 export default ContactUs;
