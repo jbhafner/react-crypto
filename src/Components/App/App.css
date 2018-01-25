@@ -1,7 +1,17 @@
 body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f1f1f1;
   padding:50px;
-  background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
+  background-image: url("../images/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.App {
+  margin-top: 10px;
 }
 
 div#crypto-container {
@@ -12,6 +22,10 @@ div#crypto-container {
   box-shadow: 1px 1px 0 lightgrey;
 }
 
+title {
+  font-size: 10px;
+}
+
 span.left {
   font-weight: bold;
 }
@@ -19,4 +33,41 @@ span.left {
 span.right {
   float:right;
 }
+
+h1 {
+  color: #003366;
+}
+
+h2 {
+  font-size: 36px;
+  color: #0b1a4d;
+}
+
+/*blog images*/
+img {
+  height: 200px;
+  width: 250px;
+}
+
+/*logo in navbar*/
+.logo img {
+  height: 65px;
+  width: 300px;
+}
+
+.faq-question {
+  font-size: 36px;
+  color: #003366;
+}
+
+.faq-answer {
+  font-size: 20px;
+  color: #0b1a4d;
+}
+
+.resource {
+  text-align: left;
+  margin-left: 30px;
+}
+
 

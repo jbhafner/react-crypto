@@ -28,6 +28,7 @@ class Home extends Component {
   }
 
 	render() {
+
 		return(
         <Paper style={paperStyle} zDepth={5}>
           <Toolbar style={{ justifyContent: 'center'}}>
@@ -52,6 +53,7 @@ class Home extends Component {
         </Paper>  
 
 		)
+
 	}
 
   updateData = () => {

@@ -9,6 +9,7 @@ import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
 import Login from "../Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
+import crypto_logo from "../images/crypto_logo.png";
 import backgroundImage from "../images/charnaTop.jpg";
 
 import AppBar from "material-ui/AppBar";
@@ -118,23 +119,26 @@ class App extends Component {
         content = <Login />;
         break;
 
-      default:
-        content = <h1>Waiting</h1>;
+      // default:
+      //  content = <h1>Waiting</h1>;
     }
 
     return (
       <div className="App">
-        // <div>
-        //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height ="125px"/>
-        // </div>
 
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           title="CryptoTracker"
-          // title={<img src="../images/crypto_logo.png" />}
-          // title={<img src="https://trtpost-wpengine.netdna-ssl.com/files/2017/08/AdobeStock_166468823-680x400.jpeg" />}
           onLeftIconButtonClick={this.handleToggle}
         />
+
+        <div className="logo">
+          <AppBar
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            title={<img src={crypto_logo} alt="logo"/>}
+            onLeftIconButtonClick={this.handleToggle}
+          />
+        </div>  
 
         <Drawer
           docked={false}
@@ -142,7 +146,7 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="CT-App" />
+          <AppBar title="CT"/>
           <MenuItem onClick={this.showHome}>Home</MenuItem>
           <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
@@ -152,7 +156,7 @@ class App extends Component {
             menuItems={[
               <MenuItem
                 onClick={this.showFVArticle}
-                primaryText="Bitcoin Futures Article"
+                primaryText="Cryptocurrency Resources"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
@@ -160,7 +164,7 @@ class App extends Component {
               />,
 
               <MenuItem primaryText="Videos" />,
-              <MenuItem primaryText="Other3" />
+
             ]}
           />
 
@@ -170,9 +174,9 @@ class App extends Component {
         </Drawer>
 
         <Paper style={paperStyle} zDepth={5}>
-  
-          {content}
-
+          <div className="react-component">
+            {content}
+          </div>
         </Paper>
 
         <Paper style={paperStyle} zDepth={5}>
