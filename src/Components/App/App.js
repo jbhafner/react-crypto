@@ -124,13 +124,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div>
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height ="125px"/>
-        </div>
+        // <div>
+        //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height ="125px"/>
+        // </div>
 
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           title="CryptoTracker"
+          // title={<img src="../images/crypto_logo.png" />}
+          // title={<img src="https://trtpost-wpengine.netdna-ssl.com/files/2017/08/AdobeStock_166468823-680x400.jpeg" />}
           onLeftIconButtonClick={this.handleToggle}
         />
 
@@ -157,7 +159,7 @@ class App extends Component {
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
 
-              <MenuItem primaryText="Other2" />,
+              <MenuItem primaryText="Videos" />,
               <MenuItem primaryText="Other3" />
             ]}
           />
@@ -202,7 +204,7 @@ class App extends Component {
     console.log("updateData funtion called");
     axios
       .get(
-        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD"
+        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT,LTC,BCH&tsyms=USD"
       )
       .then(res => {
         const cryptos = res.data;
