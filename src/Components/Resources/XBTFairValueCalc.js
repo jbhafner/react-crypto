@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
+import "./Resources.css";
 
 class XBTFairValueCalc extends Component {
   state = {
@@ -14,36 +15,46 @@ class XBTFairValueCalc extends Component {
     fairSummary1: "",
     fairSummary2: "",
     fairSummary3: "",
-    fairSummary4: ""            
+    fairSummary4: "",
+    fairSummary5: "",
+    curPair: "XBT/USD"            
   };
 
-  change = e => {
-    this.props.onChange({ [e.target.name]: e.target.value });
+  handleChange = name => event => {
     this.setState({
-      [e.target.name]: e.target.value
+      [name]: event.target.value,
     });
-  };
+  };  
 
-  onSubmit = e => {
-    e.preventDefault();
-    // this.props.onSubmit(this.state);
-    this.setState({
-      futPrice: 0,
-      cashPrice: 0,
-      numIntRate: 0.0,
-      denomIntRate: 0.0,
-      daysTilExpiry: 0,
-      contSize: 0.0
-    });
-    this.props.onChange({
-      futPrice: 0,
-      cashPrice: 0,
-      numIntRate: 0.0,
-      denomIntRate: 0.0,
-      daysTilExpiry: 0,
-      contSize: 0.0
-    });
-  };
+  // change = e => {
+  //   this.props.onChange({ [e.target.name]: e.target.value });
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+  // onSubmit = e => {
+  //   e.preventDefault();
+  //   // this.props.onSubmit(this.state);
+  //   this.setState({
+  //     futPrice: 0,
+  //     cashPrice: 0,
+  //     numIntRate: 0.0,
+  //     denomIntRate: 0.0,
+  //     daysTilExpiry: 0,
+  //     contSize: 0.0,
+  //     curPair: ""
+  //   });
+  //   this.props.onChange({
+  //     futPrice: 0,
+  //     cashPrice: 0,
+  //     numIntRate: 0.0,
+  //     denomIntRate: 0.0,
+  //     daysTilExpiry: 0,
+  //     contSize: 0.0,
+  //     curPair: ""      
+  //   });
+  // };
 
   render() {
     return (
@@ -51,12 +62,12 @@ class XBTFairValueCalc extends Component {
         <form>
           <h1>Bitcoin Futures Fair Value Calculator</h1>
           <TextField
-            name="futPrice"
+            name="futPrice"         
             hintText="Bitcoin Futures Price"
             floatingLabelText="Bitcoin Futures Price"
+            onChange={this.handleChange('futPrice')}            
             value={this.state.futPrice}
             type="number"
-            onChange={e => this.change(e)}
             floatingLabelFixed
           />
           <br />
@@ -65,7 +76,7 @@ class XBTFairValueCalc extends Component {
             hintText="Bitcoin Spot Price"
             floatingLabelText="Bitcoin Spot Price"
             value={this.state.spotPrice}
-            onChange={e => this.change(e)}
+            onChange={this.handleChange('spotPrice')}            
             type="number"
             floatingLabelFixed
           />
@@ -75,8 +86,8 @@ class XBTFairValueCalc extends Component {
             hintText="Bitcoin Interest Rate (zero for now)"
             floatingLabelText="Bitcoin Interest Rate (%)"
             value={this.state.numIntRate}
+            onChange={this.handleChange('numIntRate')}            
             type="number"
-            onChange={e => this.change(e)}
             floatingLabelFixed
           />
           <br />
@@ -85,8 +96,8 @@ class XBTFairValueCalc extends Component {
             hintText="USD Int. Rate(%)"
             floatingLabelText="USD Int. Rate (%)"
             value={this.state.denomIntRate}
+            onChange={this.handleChange('denomIntRate')}            
             type="number"
-            onChange={e => this.change(e)}
             floatingLabelFixed
           />
           <br />
@@ -95,8 +106,8 @@ class XBTFairValueCalc extends Component {
             hintText="Days until contract expiry"
             floatingLabelText="Days until contract expiry"
             value={this.state.daysTilExpiry}
+            onChange={this.handleChange('daysTilExpiry')}            
             type="number"
-            onChange={e => this.change(e)}
             floatingLabelFixed
           />
           <br />
@@ -105,21 +116,23 @@ class XBTFairValueCalc extends Component {
             hintText="Contract Size"
             floatingLabelText="Contract Size"
             value={this.state.contSize}
+            onChange={this.handleChange('contSize')}            
             type="number"
-            onChange={e => this.change(e)}
             floatingLabelFixed
           />
           <br />
-          <CalcButton label="Calculate" handleClick={this.calcData} />
+          <CalcButton label="Calculate" handleClick={this.calcData}/>
           <div>
-            Calc Results go here:
+
             {this.calcData.fvCalcResults}
             <Example 
               fairSummary1={this.state.fairSummary1}
               fairSummary2={this.state.fairSummary2}       
               fairSummary3={this.state.fairSummary3}    
-              fairSummary4={this.state.fairSummary4}                                
+              fairSummary4={this.state.fairSummary4}
+              fairSummary5={this.state.fairSummary5}                                                
             />
+            <br/> <br/>
           </div>
         </form>
 
@@ -134,11 +147,14 @@ class XBTFairValueCalc extends Component {
     let fairValueCalc = 0;
     let fairValueSpread = 0;
     let fairValueOverUnder = "";
+    let numIntRate = 0;
+    let denomIntRate = 0;
 
     let fairSummary1;
     let fairSummary2;
     let fairSummary3;
     let fairSummary4;
+    let fairSummary5;
 
     console.log("CalcData button clicked");
     console.log("state ", this.state);
@@ -152,15 +168,13 @@ class XBTFairValueCalc extends Component {
     console.log("type of spotPrice", typeof this.state.spotPrice);
 
     spotTrade = this.state.contSize * this.state.spotPrice;
-    denomFinCharge = parseFloat(
-      spotTrade *
-        (this.state.denomIntRate / 100 * (this.state.daysTilExpiry / 360))
-    );
-    numFinCharge =
-      spotTrade *
-      (this.state.numIntRate / 100 * (this.state.daysTilExpiry / 360));
+    denomFinCharge = parseFloat(spotTrade * (this.state.denomIntRate / 100 * (this.state.daysTilExpiry / 360)));
+    numFinCharge =spotTrade * (this.state.numIntRate / 100 * (this.state.daysTilExpiry / 360));
     netCost = spotTrade + denomFinCharge - numFinCharge;
     fairValueCalc = netCost / this.state.contSize;
+
+    numIntRate = this.state.numIntRate;
+    denomIntRate = this.state.denomIntRate;
 
     fairValueSpread = this.state.futPrice - fairValueCalc;
     fairValueOverUnder = "";
@@ -169,24 +183,11 @@ class XBTFairValueCalc extends Component {
     } else {
       fairValueOverUnder = "Underpriced - Sell Spot / Buy Future(s)";
     }
-    fairSummary1 = `Currency Pair: ${this.state.curPair} | Contract Size: ${
-      this.state.contSize
-    } | Days to Expiry ${this.state.daysTilExpiry} `;
-    fairSummary2 = ` Int on XBT is +$${numFinCharge.toFixed(
-      2
-    )} @ ${this.state.numIntRate.toFixed(
-      3
-    )}%: | Int on USD is -$${denomFinCharge.toFixed(
-      2
-    )} @ ${this.state.denomIntRate.toFixed(5)}%:`;
-    fairSummary3 = ` Spot Trade Cost: ${spotTrade.toLocaleString()} | Net Cost to buy and hold ${
-      this.state.contSize
-    } Bitcoin over ${
-      this.state.daysTilExpiry
-    } days is ${netCost.toLocaleString()} `;
-    fairSummary4 = ` Fair Value: ${fairValueCalc.toFixed(5)} | Futures: ${
-      this.state.futPrice
-    } | Spread: ${fairValueSpread.toFixed(4)} | Futures ${fairValueOverUnder} `;
+    fairSummary1 = `Currency Pair: ${this.state.curPair} | Contract Size: ${this.state.contSize} | Days to Expiry ${this.state.daysTilExpiry} `;
+    fairSummary2 = ` Int on XBT is +$${parseFloat(numFinCharge).toFixed(2)} @ ${parseFloat(numIntRate).toFixed(3)}%: | Int on USD is -$${parseFloat(denomFinCharge).toFixed(2)} @ ${parseFloat(denomIntRate).toFixed(5)}%:`;
+    fairSummary3 = ` Spot Trade Cost: ${spotTrade.toLocaleString()} | Net Cost to buy and hold ${this.state.contSize} Bitcoin over ${this.state.daysTilExpiry} days is ${netCost.toLocaleString()} `;
+    fairSummary4 = ` Fair Value: ${fairValueCalc.toFixed(5)} | Futures: ${this.state.futPrice} | Spread: ${fairValueSpread.toFixed(4)}`;
+    fairSummary5 = `Futures ${fairValueOverUnder} `;
 
     console.log("spotTrade: ", spotTrade);
     console.log("denomFinCharge: ", denomFinCharge);
@@ -207,7 +208,8 @@ class XBTFairValueCalc extends Component {
       fairSummary1,
       fairSummary2,
       fairSummary3,
-      fairSummary4
+      fairSummary4,
+      fairSummary5
     });
   };
 }

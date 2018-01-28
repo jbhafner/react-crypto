@@ -1,28 +1,29 @@
 import React, { Component } from "react";
+// import {BrowserRouter, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Home from "../Home/Home";
 import AddCoins from "../AddCoins/AddCoins";
 import Blog from "../Blog/Blog";
 import FAQ from "../FAQ/FAQ";
 import FVArticle from "../Resources/FVArticle";
+import Regulations from "../Resources/Regulations";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
-import Login from "../Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
-import crypto_logo from "../images/crypto_logo.png";
-import backgroundImage from "../images/charnaTop.jpg";
-
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import Paper from "material-ui/Paper";
-import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import "./App.css";
-import axios from "axios";
-import NumberFormat from "react-number-format";
-import NAVBar from "../NAVBar/NAVBar.js";
-import RaisedButtonSimple from "../Buttons/RaisedButton.js";
+// import axios from "axios";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
+import backgroundImage from "../../images/charnaTop.jpg";
+
+// import crypto_logo from "../../images/crypto_logo.png";
+import silverCoin from "../../images/silverCoin.png";
+
+import Footer from "../Footer/foot.js";
 
 const paperStyle = {
   height: "85%",
@@ -40,13 +41,14 @@ class App extends Component {
     this.state = {
       cryptos: [],
       open: false,
-      show: null
+      show: null,
+
     };
   }
 
-  componentDidMount() {
-    this.updateData();
-  }
+  // componentDidMount() {
+  //   this.props.fetchUser();
+  // }
 
   handleToggle = () => this.setState({ open: !this.state.open });
 
@@ -70,6 +72,10 @@ class App extends Component {
     this.setState({ show: "fvArticle", open: false });
   };
 
+  showRegulations = () => {
+    this.setState({ show: "regulations", open: false });
+  };
+
   showXBT_FV = () => {
     this.setState({ show: "xbt_fv", open: false });
   };
@@ -78,13 +84,20 @@ class App extends Component {
     this.setState({ show: "contact", open: false });
   };
 
-  showLogin = () => {
-    this.setState({ show: "login", open: false });
-  };
+  renderContent(){
+    switch(this.props.auth) {
+      case null:
+        return;
+      case false:
+        return <a href="/auth/google">Login With Google</a>;
+      default:
+        return <a href="/api/logout">Logout</a>;
+    }
+  }
 
   render() {
+    console.log(this.props);
     let content = null;
-    console.log("NAVBar ", NAVBar);
 
     switch (this.state.show) {
       case "home":
@@ -107,6 +120,10 @@ class App extends Component {
         content = <FVArticle />;
         break;
 
+      case "regulations":
+        content = <Regulations />;
+        break; 
+
       case "xbt_fv":
         content = <XBTFairValueCalc />;
         break;
@@ -115,30 +132,26 @@ class App extends Component {
         content = <ContactUs />;
         break;
 
-      case "login":
-        content = <Login />;
-        break;
-
-      // default:
-      //  content = <h1>Waiting</h1>;
+      default:
+        content = <Home />;
     }
 
     return (
       <div className="App">
-
-        <AppBar
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title="CryptoTracker"
-          onLeftIconButtonClick={this.handleToggle}
-        />
-
+        
         <div className="logo">
-          <AppBar
+        <AppBar
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            title={<img src={crypto_logo} alt="logo"/>}
+            style={{position: 'fixed', top: 0}}
+            title={<img src={silverCoin} alt="logo" width="25px" height="25"/>}
             onLeftIconButtonClick={this.handleToggle}
           />
         </div>  
+
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        </div>
+
 
         <Drawer
           docked={false}
@@ -146,76 +159,48 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="CT"/>
+          <AppBar title= "CT" />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
-          <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
+          <MenuItem onClick={this.showAddCoins}>My Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
           <MenuItem
             primaryText="Resources"
             rightIcon={<ArrowDropRight />}
             menuItems={[
               <MenuItem
-                onClick={this.showFVArticle}
-                primaryText="Cryptocurrency Resources"
+                onClick={this.showRegulations}
+                primaryText="Regulations"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
-
-              <MenuItem primaryText="Videos" />,
-
+              <MenuItem
+                onClick={this.showFVArticle}
+                primaryText="Trading Bitcoin Futures"
+              />
             ]}
           />
 
           <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
           <MenuItem onClick={this.showContact}>Contact</MenuItem>
-          <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
 
         <Paper style={paperStyle} zDepth={5}>
-          <div className="react-component">
-            {content}
-          </div>
+          {content} {/* this is main content area */}
         </Paper>
 
-        <Paper style={paperStyle} zDepth={5}>
-          <Toolbar style={{ justifyContent: 'center'}}>
-            <ToolbarTitle text="Current Cryptocurrency Quotes" />
-          </Toolbar>  
-          <br />
-          {Object.keys(this.state.cryptos).map(key => (
-            <div id="crypto-container">
-              <span className="left">{key}</span>
-              <span className="right">
-                <NumberFormat
-                  value={this.state.cryptos[key].USD}
-                  displayType={"text"}
-                  decimalPrecision={2}
-                  thousandSeparator={true}
-                  prefix={"$"}
-                />
-              </span>
-            </div>
-          ))}
-          <RaisedButtonSimple handleClick={this.updateData} />
-        </Paper>  
-      </div>
-    );
-  }
+        {/*<div className="banner">
+        //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        // </div>*/}
 
-  updateData = () => {
-    console.log("updateData funtion called");
-    axios
-      .get(
-        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT,LTC,BCH&tsyms=USD"
-      )
-      .then(res => {
-        const cryptos = res.data;
-        console.log(cryptos);
-        this.setState({ cryptos: cryptos });
-      });
-  };
-}
+        <Footer />  
 
+      </div> // close div className="App"
+    ); // close return
+  } // close class App extends Component
+
+} // close class App extends Component
+
+ 
 export default App;

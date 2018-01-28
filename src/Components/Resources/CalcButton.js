@@ -9,7 +9,7 @@ const CalcButton = props => {
   console.log("CalcButton props ", props);
   return (
     <div onClick={props.handleClick}>
-      <RaisedButton label="Calculate" primary={true} style={style} />>
+      <RaisedButton label="Calculate" primary={true} style={style} />
     </div>
   );
 };
