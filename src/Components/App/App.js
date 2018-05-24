@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import {BrowserRouter, Route} from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import Home from "../Home/Home";
 import AddCoins from "../AddCoins/AddCoins";
@@ -10,6 +10,7 @@ import FVArticle from "../Resources/FVArticle";
 import Regulations from "../Resources/Regulations";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
+import Login from "../Login/Login";
 import cryptoLogo from "./cryptoLogo.png";
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
@@ -19,6 +20,9 @@ import "./App.css";
 // import axios from "axios";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
+import ToolBar from "material-ui/Toolbar";
+import Button from "material-ui/IconButton";
+import LoginScreen from "../LoginScreen/LoginScreen";
 
 // import crypto_logo from "../../images/crypto_logo.png";
 import silverCoin from "../../images/silverCoin.png";
@@ -31,7 +35,7 @@ const paperStyle = {
   margin: "7%",
   textAlign: "center",
   display: "inline-block",
-  backgroundImage: {backgroundImage}
+  backgroundImage: { backgroundImage }
 };
 
 class App extends Component {
@@ -42,8 +46,16 @@ class App extends Component {
       cryptos: [],
       open: false,
       show: null,
-
+      loginPage: []
     };
+  }
+
+  componentWillMount() {
+    var loginPage = [];
+    loginPage.push(<LoginScreen parentContext={this} />);
+    this.setState({
+      loginPage: loginPage
+    });
   }
 
   // componentDidMount() {
@@ -84,8 +96,12 @@ class App extends Component {
     this.setState({ show: "contact", open: false });
   };
 
-  renderContent(){
-    switch(this.props.auth) {
+  showLogin = () => {
+    this.setState({ show: "login", open: false });
+  };
+
+  renderContent() {
+    switch (this.props.auth) {
       case null:
         return;
       case false:
@@ -122,7 +138,7 @@ class App extends Component {
 
       case "regulations":
         content = <Regulations />;
-        break; 
+        break;
 
       case "xbt_fv":
         content = <XBTFairValueCalc />;
@@ -132,26 +148,28 @@ class App extends Component {
         content = <ContactUs />;
         break;
 
+      case "login":
+        content = <Login />;
+        break;
+
       default:
         content = <Home />;
     }
 
     return (
       <div className="App">
-        
         <div className="logo">
-        <AppBar
+          <AppBar
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            style={{position: 'fixed', top: 0}}
-            title={<img src={silverCoin} alt="logo" width="25px" height="25"/>}
+            style={{ position: "fixed", top: 0 }}
+            title={<img src={silverCoin} alt="logo" width="25px" height="25" />}
             onLeftIconButtonClick={this.handleToggle}
           />
-        </div>  
-
-        <div className="banner">
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         </div>
 
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px" />
+        </div>
 
         <Drawer
           docked={false}
@@ -159,7 +177,7 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title= "CT" />
+          <AppBar title="CT" />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
           <MenuItem onClick={this.showAddCoins}>My Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
@@ -184,7 +202,10 @@ class App extends Component {
 
           <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
           <MenuItem onClick={this.showContact}>Contact</MenuItem>
+          <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
+
+        <Button color="inherit">Login</Button>
 
         <Paper style={paperStyle} zDepth={5}>
           {content} {/* this is main content area */}
@@ -194,13 +215,10 @@ class App extends Component {
         //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         // </div>*/}
 
-        <Footer />  
-
+        <Footer />
       </div> // close div className="App"
     ); // close return
   } // close class App extends Component
-
 } // close class App extends Component
 
- 
 export default App;
