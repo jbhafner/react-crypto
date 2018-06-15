@@ -1,11 +1,22 @@
 body {
   background: #f1f1f1;
-  padding:50px;
+  padding: 50px;
   background-image: url("https://charnacoin.com/assets/images/charnaTop.jpg");
 }
 
+.Home {
+  font-size: 14px;
+  color: navy;
+  margin: 10px;
+  background: darkgrey;
+}
+
+.addCoinToolbar {
+  background-color: #e8e8e8;
+}
+
 div#coinList-container {
-  background:white;
+  background: white;
   width: 70%;
   margin: 0 auto 4px auto;
   padding: 1em;
@@ -13,23 +24,26 @@ div#coinList-container {
 }
 
 span.left {
-  float:left;
+  float: left;
   font-weight: bold;
 }
 
 span.right {
-  float:right;
+  float: right;
 }
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 table {
   border-spacing: 5px;
 }
 
-th, td {
+th,
+td {
   padding: 15px;
 }

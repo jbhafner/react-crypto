@@ -60,7 +60,8 @@ class Loginscreen extends Component {
         isLogin: false
       });
     } else {
-      var loginscreen = [];
+      // var loginscreen = [];
+      loginscreen = [];
       loginscreen.push(<Login parentContext={this} />);
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 // import {BrowserRouter, Route} from 'react-router-dom';
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
+import { Link, Route, Redirect } from "react-router-dom";
+// import axios from "axios";
 
 import Home from "../Home/Home";
 import AddCoins from "../AddCoins/AddCoins";
@@ -20,7 +22,7 @@ import "./App.css";
 // import axios from "axios";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
-import ToolBar from "material-ui/Toolbar";
+// import ToolBar from "material-ui/Toolbar";
 import Button from "material-ui/IconButton";
 import LoginScreen from "../LoginScreen/LoginScreen";
 
@@ -39,16 +41,17 @@ const paperStyle = {
 };
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      cryptos: [],
-      open: false,
-      show: null,
-      loginPage: []
-    };
-  }
+  //   this.state = {
+  //     cryptos: [],
+  //     open: false,
+  //     show: null,
+  //     loginPage: [],
+  //     coinList: []
+  //   };
+  // }
 
   componentWillMount() {
     var loginPage = [];
@@ -59,7 +62,7 @@ class App extends Component {
   }
 
   // componentDidMount() {
-  //   this.props.fetchUser();
+  //   this.props.getMyCoins();
   // }
 
   handleToggle = () => this.setState({ open: !this.state.open });
@@ -112,7 +115,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     let content = null;
 
     switch (this.state.show) {
@@ -218,7 +221,11 @@ class App extends Component {
         <Footer />
       </div> // close div className="App"
     ); // close return
-  } // close class App extends Component
+  } // close render
+
+  // ===== FUNCTIONS ===== //
+
+  // ===== END FUNCTIONS ===== //
 } // close class App extends Component
 
 export default App;

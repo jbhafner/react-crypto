@@ -59,12 +59,12 @@ class Login extends Component {
       .post(apiBaseUrl + "login", payload)
       .then(function(response) {
         console.log(response);
-        if (response.data.code == 200) {
+        if (response.data.code === 200) {
           console.log("Login successfull");
           self.props.appContext.setState({
             loginPage: []
           });
-        } else if (response.data.code == 204) {
+        } else if (response.data.code === 204) {
           console.log("Username password do not match");
           alert("username password do not match");
         } else {
