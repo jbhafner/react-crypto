@@ -1,15 +1,20 @@
 import React, { Component } from "react";
+import { Provider } from "react-redux";
+import { configureStore } from "../../store";
 // import {BrowserRouter, Route} from 'react-router-dom';
-import { connect } from 'react-redux';
-
+// import { connect } from "react-redux";
+import { Link, Route, Redirect } from "react-router-dom";
+// import axios from "axios";
+// import {configureStore } from "../"
 import Home from "../Home/Home";
-import AddCoins from "../AddCoins/AddCoins";
+import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
 import Blog from "../Blog/Blog";
 import FAQ from "../FAQ/FAQ";
 import FVArticle from "../Resources/FVArticle";
 import Regulations from "../Resources/Regulations";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
+import Login from "../Login2/Login2";
 import cryptoLogo from "./cryptoLogo.png";
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
@@ -19,6 +24,9 @@ import "./App.css";
 // import axios from "axios";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
+// import ToolBar from "material-ui/Toolbar";
+import Button from "material-ui/IconButton";
+import LoginScreen from "../LoginScreen/LoginScreen";
 
 // import crypto_logo from "../../images/crypto_logo.png";
 import silverCoin from "../../images/silverCoin.png";
@@ -31,23 +39,44 @@ const paperStyle = {
   margin: "7%",
   textAlign: "center",
   display: "inline-block",
-  backgroundImage: {backgroundImage}
+  backgroundImage: { backgroundImage }
 };
 
+const store = configureStore();
+
+// if(localStorage.jwtToken) {
+//   setAuthorizationToken(localStorage.jwtToken);
+//   // prevent someone from manually tampering with the key of jwtToken in localStorage
+//   try {
+//     store.dispatch(setCurrentUser(jwtToken(localStorage.jwtToken)))
+//   } catch(err) {
+//     store.dispatch(setCurrentUser({}));
+//   }
+// }
+
 class App extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      cryptos: [],
-      open: false,
-      show: null,
+  //   this.state = {
+  //     cryptos: [],
+  //     open: false,
+  //     show: null,
+  //     loginPage: [],
+  //     coinList: []
+  //   };
+  // }
 
-    };
+  componentWillMount() {
+    var loginPage = [];
+    loginPage.push(<LoginScreen parentContext={this} />);
+    this.setState({
+      loginPage: loginPage
+    });
   }
 
   // componentDidMount() {
-  //   this.props.fetchUser();
+  //   this.props.getMyCoins();
   // }
 
   handleToggle = () => this.setState({ open: !this.state.open });
@@ -56,8 +85,8 @@ class App extends Component {
     this.setState({ show: "home", open: false });
   };
 
-  showAddCoins = () => {
-    this.setState({ show: "addCoins", open: false });
+  showMyCoinsHeader = () => {
+    this.setState({ show: "myCoins", open: false });
   };
 
   showBlog = () => {
@@ -84,8 +113,12 @@ class App extends Component {
     this.setState({ show: "contact", open: false });
   };
 
-  renderContent(){
-    switch(this.props.auth) {
+  showLogin = () => {
+    this.setState({ show: "login", open: false });
+  };
+
+  renderContent() {
+    switch (this.props.auth) {
       case null:
         return;
       case false:
@@ -96,7 +129,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     let content = null;
 
     switch (this.state.show) {
@@ -104,8 +137,8 @@ class App extends Component {
         content = <Home />;
         break;
 
-      case "addCoins":
-        content = <AddCoins />;
+      case "myCoins":
+        content = <MyCoinsHeader />;
         break;
 
       case "blog":
@@ -122,7 +155,7 @@ class App extends Component {
 
       case "regulations":
         content = <Regulations />;
-        break; 
+        break;
 
       case "xbt_fv":
         content = <XBTFairValueCalc />;
@@ -132,26 +165,28 @@ class App extends Component {
         content = <ContactUs />;
         break;
 
+      case "login":
+        content = <Login />;
+        break;
+
       default:
         content = <Home />;
     }
 
     return (
       <div className="App">
-        
         <div className="logo">
-        <AppBar
+          <AppBar
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            style={{position: 'fixed', top: 0}}
-            title={<img src={silverCoin} alt="logo" width="25px" height="25"/>}
+            style={{ position: "fixed", top: 0 }}
+            title={<img src={silverCoin} alt="logo" width="25px" height="25" />}
             onLeftIconButtonClick={this.handleToggle}
           />
-        </div>  
-
-        <div className="banner">
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         </div>
 
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px" />
+        </div>
 
         <Drawer
           docked={false}
@@ -159,9 +194,9 @@ class App extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title= "CT" />
+          <AppBar title="CT" />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
-          <MenuItem onClick={this.showAddCoins}>My Coins</MenuItem>
+          <MenuItem onClick={this.showMyCoinsHeader}>My Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
           <MenuItem
             primaryText="Resources"
@@ -184,7 +219,10 @@ class App extends Component {
 
           <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
           <MenuItem onClick={this.showContact}>Contact</MenuItem>
+          <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
+
+        <Button color="inherit">Login</Button>
 
         <Paper style={paperStyle} zDepth={5}>
           {content} {/* this is main content area */}
@@ -194,13 +232,14 @@ class App extends Component {
         //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         // </div>*/}
 
-        <Footer />  
+        <Footer />
+      </div>
+    ); // close div className="App" // close return
+  } // close render
 
-      </div> // close div className="App"
-    ); // close return
-  } // close class App extends Component
+  // ===== FUNCTIONS ===== //
 
+  // ===== END FUNCTIONS ===== //
 } // close class App extends Component
 
- 
 export default App;
