@@ -12,16 +12,11 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./Reducers/rootReducer";
 import { BrowserRouter } from "react-router-dom";
+import { configureStore } from "./store";
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const store = configureStore();
 
-console.log("REDUX store", store);
+// console.log("REDUX store", store);
 // const muiTheme = getMuiTheme(darkBaseTheme);
 // const muiTheme = getMuiTheme(lightBaseTheme);
 // Indigo500 / Blue500

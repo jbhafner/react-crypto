@@ -1,18 +1,20 @@
 import React, { Component } from "react";
+import { Provider } from "react-redux";
+import { configureStore } from "../../store";
 // import {BrowserRouter, Route} from 'react-router-dom';
 // import { connect } from "react-redux";
 import { Link, Route, Redirect } from "react-router-dom";
 // import axios from "axios";
-
+// import {configureStore } from "../"
 import Home from "../Home/Home";
-import AddCoins from "../AddCoins/AddCoins";
+import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
 import Blog from "../Blog/Blog";
 import FAQ from "../FAQ/FAQ";
 import FVArticle from "../Resources/FVArticle";
 import Regulations from "../Resources/Regulations";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
-import Login from "../Login/Login";
+import Login from "../Login2/Login2";
 import cryptoLogo from "./cryptoLogo.png";
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
@@ -39,6 +41,18 @@ const paperStyle = {
   display: "inline-block",
   backgroundImage: { backgroundImage }
 };
+
+const store = configureStore();
+
+// if(localStorage.jwtToken) {
+//   setAuthorizationToken(localStorage.jwtToken);
+//   // prevent someone from manually tampering with the key of jwtToken in localStorage
+//   try {
+//     store.dispatch(setCurrentUser(jwtToken(localStorage.jwtToken)))
+//   } catch(err) {
+//     store.dispatch(setCurrentUser({}));
+//   }
+// }
 
 class App extends Component {
   // constructor(props) {
@@ -71,8 +85,8 @@ class App extends Component {
     this.setState({ show: "home", open: false });
   };
 
-  showAddCoins = () => {
-    this.setState({ show: "addCoins", open: false });
+  showMyCoinsHeader = () => {
+    this.setState({ show: "myCoins", open: false });
   };
 
   showBlog = () => {
@@ -123,8 +137,8 @@ class App extends Component {
         content = <Home />;
         break;
 
-      case "addCoins":
-        content = <AddCoins />;
+      case "myCoins":
+        content = <MyCoinsHeader />;
         break;
 
       case "blog":
@@ -182,7 +196,7 @@ class App extends Component {
         >
           <AppBar title="CT" />
           <MenuItem onClick={this.showHome}>Home</MenuItem>
-          <MenuItem onClick={this.showAddCoins}>My Coins</MenuItem>
+          <MenuItem onClick={this.showMyCoinsHeader}>My Coins</MenuItem>
           <MenuItem onClick={this.showBlog}>Blog</MenuItem>
           <MenuItem
             primaryText="Resources"
@@ -219,8 +233,8 @@ class App extends Component {
         // </div>*/}
 
         <Footer />
-      </div> // close div className="App"
-    ); // close return
+      </div>
+    ); // close div className="App" // close return
   } // close render
 
   // ===== FUNCTIONS ===== //

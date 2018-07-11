@@ -1,7 +1,18 @@
 import React from "react";
 import "./CoinItem.css";
 
-const CoinItem = ({ id, symbol, name, removeMyCoin }) => (
+const CoinItem = ({
+  _id,
+  id,
+  purchDate,
+  symbol,
+  name,
+  baseCurrency,
+  price,
+  amount,
+  total,
+  removeMyCoin
+}) => (
   <div id="crypto-container">
     <span className="left">{symbol}</span>
     <span>{name}</span>

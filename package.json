@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.2.1",
+    "@material-ui/icons": "^1.1.0",
     "axios": "^0.17.1",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
@@ -16,6 +17,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
+    "prop-types": "^15.6.2",
     "react": "^16.3.2",
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.3.2",
@@ -23,6 +25,8 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.0.17",
+    "react-select": "^1.2.1",
+    "react-table": "^6.8.6",
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0"
