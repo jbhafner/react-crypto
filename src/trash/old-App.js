@@ -8,7 +8,7 @@ import FVArticle from "./Components/Resources/FVArticle";
 import XBTFairValueCalc from "./Components/Resources/XBTFairValueCalc";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import Login from "./Components/Login/Login";
-import cryptoLogo from "./cryptoLogo.png";
+import cryptoLogo from "../../images/cryptoLogo.png";
 
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";

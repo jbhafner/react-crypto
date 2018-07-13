@@ -1,10 +1,32 @@
-import React from "react";
-import AppBar from "material-ui/AppBar";
 import React, { Component } from "react";
-import Paper from "material-ui/Paper";
+import { Link } from "react-router-dom";
+import AddCoins from "../MyCoinsBody/MyCoinsBody";
+import AppBar from "material-ui/AppBar";
+import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
+import backgroundImage from "../../images/charnaTop.jpg";
+import Blog from "../Blog/Blog";
+import Button from "material-ui/IconButton";
+import ContactUs from "../ContactUs/ContactUs";
+import cryptoLogo from "../../images/cryptoLogo.png";
+import Drawer from "material-ui/Drawer";
+import FAQ from "../FAQ/FAQ";
+import FlatButton from "material-ui/FlatButton";
+import Footer from "../Footer/foot.js";
+import FVArticle from "../Resources/FVArticle";
+import Home from "../Home/Home";
+import Login from "../Login2/Login2";
+import LoginScreen from "../LoginScreen/LoginScreen";
 import Menu from "material-ui/Menu";
 import MenuItem from "material-ui/MenuItem";
-import FlatButton from "material-ui/FlatButton";
+import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
+import Paper from "material-ui/Paper";
+import Regulations from "../Resources/Regulations";
+import silverCoin from "../../images/silverCoin.png";
+import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
+import { connect } from "react-redux";
+import { logout } from "../../store/actions/auth";
+import "./NAVBar.css";
+import Toolbar from "@material-ui/core/Toolbar";
 
 class NAVBar extends Component {
   constructor(props) {
@@ -16,9 +38,14 @@ class NAVBar extends Component {
     };
   }
 
-  componentDidMount() {
-    this.updateData();
-  }
+  logout = e => {
+    e.preventDefault();
+    this.props.logout();
+  };
+
+  // componentDidMount() {
+  //   this.updateData();
+  // }
 
   handleToggle = () => this.setState({ open: !this.state.open });
 
@@ -96,15 +123,29 @@ class NAVBar extends Component {
 
     return (
       <div className="App">
-        <div>
-          <img src={cryptoLogo} alt="CryptoLogo" />
-        </div>
-
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
+          style={{ position: "fixed", top: 0 }}
           title="CryptoTracker"
           onLeftIconButtonClick={this.handleToggle}
-        />
+        >
+          <div>
+            <Toolbar>
+              {this.props.currentUser.isAuthenticated ? (
+                <Button onClick={this.logout} title="Logout" />
+              ) : (
+                <div>
+                  <a>
+                    <Link to={"/signin"}>Log in</Link>
+                  </a>
+                  <a>
+                    <Link to={"/signup"}>Sign Up</Link>
+                  </a>
+                </div>
+              )}
+            </Toolbar>
+          </div>
+        </AppBar>
 
         <Drawer
           docked={false}
@@ -112,35 +153,75 @@ class NAVBar extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="CryptoTracker" />
-          <MenuItem onClick={this.showHome}>Home</MenuItem>
-          <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
-          <MenuItem onClick={this.showBlog}>Blog</MenuItem>
+          <AppBar title="CT" />
+          <MenuItem
+            onClick={this.showHome}
+            containerElement={<Link to="/" />}
+            primaryText="Home"
+          />
+          <MenuItem
+            onClick={this.showAddCoins}
+            containerElement={<Link to="/addcoins" />}
+            primaryText="Add Coins"
+          />
+          <MenuItem
+            onClick={this.showBlog}
+            containerElement={<Link to="/blog" />}
+            primaryText="Blog"
+          />
           <MenuItem
             primaryText="Resources"
             rightIcon={<ArrowDropRight />}
             menuItems={[
               <MenuItem
                 onClick={this.showFVArticle}
+                containerElement={<Link to="/resources/xbtFVArticle" />}
                 primaryText="Bitcoin Futures Article"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
+                containerElement={<Link to="/resources/xbtFVCalculator" />}
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
-
               <MenuItem primaryText="Other2" />,
               <MenuItem primaryText="Other3" />
             ]}
           />
 
-          <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
-          <MenuItem onClick={this.showContact}>Contact</MenuItem>
+          <MenuItem
+            onClick={this.showFAQ}
+            containerElement={<Link to="/faq" />}
+            primaryText="FAQ"
+          />
+          <MenuItem
+            onClick={this.showContact}
+            containerElement={<Link to="/contact" />}
+            primaryText="Contact Us"
+          />
           <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
+        <Button color="inherit">
+          <Link to="/signin">Login</Link>
+        </Button>
+        <Button color="inherit">
+          <Link to="/signin">Sign Up</Link>
+        </Button>
       </div>
     );
   }
 }
 
-export default NAVBar;
+function mapStateToProps(state) {
+  return {
+    open: state.open,
+    show: state.show,
+    currentUser: state.currentUser
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(NAVBar);
+
+// export default NAVBar;

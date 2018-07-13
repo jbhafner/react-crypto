@@ -8,7 +8,7 @@ import FVArticle from "./Components/Resources/FVArticle";
 import XBTFairValueCalc from "./Components/Resources/XBTFairValueCalc";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import Login from "./Components/Login/Login";
-import cryptoLogo from "./cryptoLogo.png";
+import cryptoLogo from "../../images/cryptoLogo.png";
 
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
@@ -21,6 +21,12 @@ import NumberFormat from "react-number-format";
 import NAVBar from "./NAVBar.js";
 import RaisedButtonSimple from "./RaisedButton.js";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
+
+import jwtDecode from "jwt-decode";
+import {
+  setAuthorizationToken,
+  setCurrentUser
+} from "../../store/actions/auth";
 
 const paperStyle = {
   height: "85%",

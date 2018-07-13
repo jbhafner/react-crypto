@@ -9,7 +9,7 @@ import {
   getMyCoinPrices,
   addMyCoin,
   removeMyCoin
-} from "../../Actions/actionCreators";
+} from "../../store/actionCreators";
 import {
   BrowserRouter as Router,
   Link,

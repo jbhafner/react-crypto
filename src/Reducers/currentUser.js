@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from "../Actions/actionCreators";
+import { SET_CURRENT_USER } from "../store/actionCreators";
 
 const DEFAULT_STATE = {
   isAuthenticated: false, // true when logged in
