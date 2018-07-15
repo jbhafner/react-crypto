@@ -27,7 +27,7 @@ import backgroundImage from "../images/charnaTop.jpg";
 // import LoginScreen from "../Components/LoginScreen/LoginScreen";
 // import Footer from "../Components/Footer/foot.js";
 // import silverCoin from "../images/silverCoin.png";
-import AddCoins from "../Components/MyCoinsBody/MyCoinsBody";
+import AddCoins from "../Components/MyCoinsHeader/MyCoinsHeader";
 // import "./Main.css";
 import cryptoLogo from "../images/cryptoLogo.png";
 
@@ -82,7 +82,7 @@ const Main = props => {
                   errors={errors}
                   onAuth={authUser}
                   buttonText="Log in"
-                  heading="Welcome Back."
+                  heading="Welcome Back!"
                   {...props}
                 />
               );

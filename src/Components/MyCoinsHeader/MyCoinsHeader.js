@@ -3,6 +3,7 @@ import MyCoinsBody from "../MyCoinsBody/MyCoinsBody.js";
 import MyCoinsNewForm from "../MyCoinsNewForm/MyCoinsNewForm.js";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
+import { fetchCoins } from "../../store/actions/coins";
 import {
   getAllCoins,
   getMyCoins,
@@ -18,6 +19,8 @@ import {
   Switch
 } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
+import withAuth from "../../hocs/withAuth.js";
+import CoinItem from "../CoinItem/CoinItem";
 
 class MyCoinsHeader extends Component {
   constructor(props) {
@@ -28,11 +31,10 @@ class MyCoinsHeader extends Component {
   }
 
   componentDidMount() {
-    this.updateCoins();
-    // console.log("called getMyCoins from componentDidMount");
-    // this.props.getMyCoins();
-    // this.props.getAllCoins();
-    // console.log("componentDidMount - this.props", this.props);
+    // this.updateCoins();
+    console.log("called getMyCoins from componentDidMount");
+    this.props.fetchCoins();
+    // this.updateMyCoinPrices();
   }
 
   handleAdd(val) {
@@ -72,6 +74,7 @@ class MyCoinsHeader extends Component {
   }
 
   async updateCoins() {
+    console.log("updateCoins called");
     let coinArray = await [];
     await console.log("called getMyCoins from componentDidMount");
     await this.props.getMyCoins();
@@ -98,9 +101,11 @@ class MyCoinsHeader extends Component {
             <Switch>
               <Route
                 path="/coins/new"
-                component={props => (
-                  <MyCoinsNewForm {...props} handleSubmit={this.handleAdd} />
-                )}
+                component={props =>
+                  withAuth(
+                    <MyCoinsNewForm {...props} handleSubmit={this.handleAdd} />
+                  )
+                }
               />
               <Route
                 exact
@@ -127,6 +132,7 @@ class MyCoinsHeader extends Component {
 } // clse class AddCoins
 
 function mapStateToProps(reduxState) {
+  console.log("MyCoinsHeader.js - mapStateToProps/reduxState", reduxState);
   return {
     allCoins: reduxState.allCoins,
     myCoins: reduxState.myCoins,
@@ -137,6 +143,7 @@ function mapStateToProps(reduxState) {
 export default connect(
   mapStateToProps,
   {
+    fetchCoins,
     getAllCoins,
     getMyCoins,
     getMyCoinPrices,

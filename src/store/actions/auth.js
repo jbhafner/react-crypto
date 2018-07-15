@@ -22,10 +22,14 @@ export function logout() {
 }
 
 export function authUser(type, userData) {
+  console.log("store/actions/auth.js - type", type, "userData", userData);
+
   return dispatch => {
     return new Promise((resolve, reject) => {
+      console.log("post", `/api/auth/${type}`, userData);
       return apiCall("post", `/api/auth/${type}`, userData)
         .then(({ token, ...user }) => {
+          console.log("store/actions/auth.js - token", token);
           localStorage.setItem("jwtToken", token);
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
@@ -33,6 +37,7 @@ export function authUser(type, userData) {
           resolve();
         })
         .catch(err => {
+          console.log("auth.js err", err);
           dispatch(addError(err.message));
           reject();
         });

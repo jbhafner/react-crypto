@@ -1,13 +1,19 @@
 import React, { Component } from "react";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import AppBar from "material-ui/AppBar";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 
+const style = {
+  margin: 15
+};
 class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       username: "",
-      password: "",
-      profileImageUrl: ""
+      password: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,6 +27,8 @@ class AuthForm extends Component {
   }
 
   handleSubmit(e) {
+    console.log("AuthForm.js this.props", this.props);
+
     e.preventDefault();
     const authType = this.props.signUp ? "signup" : "signin";
     this.props
@@ -48,48 +56,58 @@ class AuthForm extends Component {
       removeError();
     });
     return (
-      <div className="row justify-content-md-center text-center">
-        <div className="col-md-6">
+      <div>
+        <MuiThemeProvider>
           <form onSubmit={this.handleSubmit}>
             <h2>{heading}</h2>
             {errors.message && (
               <div className="alert alert-danger">{errors.message}</div>
             )}
-            <label htmlFor="email">Email:</label>
-            <input
-              className="form-control"
-              id="email"
-              name="email"
-              onChange={this.handleChange}
-              value={email}
-              type="text"
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-              className="form-control"
-              id="password"
-              name="password"
-              onChange={this.handleChange}
-              type="password"
-            />
+            <div>
+              <TextField
+                id="email"
+                name="email"
+                hintText="Enter your E-mail"
+                floatingLabelText="E-mail"
+                onChange={this.handleChange}
+                value={email}
+                type="text"
+              />
+              <br />
+              <TextField
+                id="password"
+                name="password"
+                hintText="Enter your Password"
+                floatingLabelText="Password"
+                onChange={this.handleChange}
+                type="password"
+              />
+              <br />
+            </div>
             {signUp && (
               <div>
-                <label htmlFor="username">Username:</label>
-                <input
-                  className="form-control"
+                <TextField
                   id="username"
                   name="username"
+                  hintText="Enter your Username"
+                  floatingLabelText="Username"
                   onChange={this.handleChange}
                   value={username}
                   type="text"
                 />
+                <br />
               </div>
             )}
-            <button type="submit" className="btn btn-primary btn-block btn-lg">
-              {buttonText}
-            </button>
+            <div>
+              <RaisedButton
+                label="Submit"
+                primary={true}
+                style={style}
+                type="submit"
+              />
+            </div>
           </form>
-        </div>
+        </MuiThemeProvider>
       </div>
     );
   }

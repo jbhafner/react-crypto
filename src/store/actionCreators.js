@@ -52,7 +52,7 @@ export function getAllCoins() {
 }
 
 export function getMyCoins() {
-  console.log("getMyCoins funtion called from actionCreator");
+  console.log("getMyCoins function called from actionCreator");
   return dispatch => {
     return fetch("http://localhost:3025/api/coins/")
       .then(res => res.json())

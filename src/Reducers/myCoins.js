@@ -8,7 +8,7 @@ import {
 
 const initalState = {
   allCoins: [],
-  myCoins: [],
+  myCoins: [{ symbol: "BTC", name: "Bitcoin" }],
   myCoinPrices: []
 };
 

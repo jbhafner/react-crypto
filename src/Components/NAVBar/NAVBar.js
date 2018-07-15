@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import AddCoins from "../MyCoinsBody/MyCoinsBody";
+import AddCoins from "../MyCoinsHeader/MyCoinsHeader";
 import AppBar from "material-ui/AppBar";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
 import Blog from "../Blog/Blog";
-import Button from "material-ui/IconButton";
+import Button from "@material-ui/core/Button";
 import ContactUs from "../ContactUs/ContactUs";
 import cryptoLogo from "../../images/cryptoLogo.png";
 import Drawer from "material-ui/Drawer";
@@ -28,9 +30,21 @@ import { logout } from "../../store/actions/auth";
 import "./NAVBar.css";
 import Toolbar from "@material-ui/core/Toolbar";
 
+// const styles = theme => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//     margin: "5px"
+//   }
+// });
+
+const style = {
+  margin: "5px",
+  color: "white"
+};
 class NAVBar extends Component {
   constructor(props) {
     super(props);
+    const { classes } = props;
 
     this.state = {
       open: false,
@@ -132,15 +146,33 @@ class NAVBar extends Component {
           <div>
             <Toolbar>
               {this.props.currentUser.isAuthenticated ? (
-                <Button onClick={this.logout} title="Logout" />
+                <Button
+                  onClick={this.logout}
+                  component={Link}
+                  to="/signin"
+                  variant="outlined"
+                  style={style}
+                >
+                  Log Out
+                </Button>
               ) : (
                 <div>
-                  <a>
-                    <Link to={"/signin"}>Log in</Link>
-                  </a>
-                  <a>
-                    <Link to={"/signup"}>Sign Up</Link>
-                  </a>
+                  <Button
+                    component={Link}
+                    to="/signin"
+                    variant="outlined"
+                    style={style}
+                  >
+                    Log In
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/signup"
+                    variant="outlined"
+                    style={style}
+                  >
+                    Sign Up
+                  </Button>
                 </div>
               )}
             </Toolbar>
@@ -159,11 +191,13 @@ class NAVBar extends Component {
             containerElement={<Link to="/" />}
             primaryText="Home"
           />
-          <MenuItem
-            onClick={this.showAddCoins}
-            containerElement={<Link to="/addcoins" />}
-            primaryText="Add Coins"
-          />
+          {this.props.currentUser.isAuthenticated ? (
+            <MenuItem
+              onClick={this.showAddCoins}
+              containerElement={<Link to="/addcoins" />}
+              primaryText="Add Coins"
+            />
+          ) : null}
           <MenuItem
             onClick={this.showBlog}
             containerElement={<Link to="/blog" />}
