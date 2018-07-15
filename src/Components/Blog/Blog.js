@@ -13,9 +13,9 @@ class Blog extends Component {
       <div>
         <h1>Current Cryptocurrency News</h1>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={bitCoinTop} alt={"coin"} height="120" width="120" />
             </div>
             <section>
@@ -38,7 +38,7 @@ class Blog extends Component {
                   href="https://www.coindesk.com/information/what-is-bitcoin/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="more-link"
+                  className="more-link"
                 >
                   Read More
                 </a>
@@ -47,9 +47,9 @@ class Blog extends Component {
           </div>
         </div>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={bitCoinWhy} alt="coin" height="120" width="120" />
             </div>
             <article>
@@ -71,7 +71,7 @@ class Blog extends Component {
                   href="https://support.coinbase.com/customer/portal/articles/1824913-why-would-i-use-bitcoin-why-should-i-use-bitcoin-"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="more-link"
+                  className="more-link"
                 >
                   Read More
                 </a>
@@ -80,9 +80,9 @@ class Blog extends Component {
           </div>
         </div>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={bitCoinExchange} alt="coin" height="120" width="120" />
             </div>
             <article>
@@ -111,7 +111,7 @@ class Blog extends Component {
 
               <a
                 href="https://www.coindesk.com/information/how-can-i-buy-bitcoins/"
-                class="more-link"
+                className="more-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -121,9 +121,9 @@ class Blog extends Component {
           </div>
         </div>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={wallet2} alt="coin" height="120" width="120" />
             </div>
             <article>
@@ -151,7 +151,7 @@ class Blog extends Component {
                 href="https://money.usnews.com/investing/investing-101/articles/2017-11-06/best-bitcoin-wallet-of-2018"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="more-link"
+                className="more-link"
               >
                 Read More
               </a>
@@ -159,9 +159,9 @@ class Blog extends Component {
           </div>
         </div>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={bitCoinAnonymity} alt="coin" height="120" width="140" />
             </div>
             <article>
@@ -183,7 +183,7 @@ class Blog extends Component {
                 href="https://www.technologyreview.com/s/608716/bitcoin-transactions-arent-as-anonymous-as-everyone-hoped/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="more-link"
+                className="more-link"
               >
                 Read More
               </a>
@@ -191,9 +191,9 @@ class Blog extends Component {
           </div>
         </div>
 
-        <div class="wrap">
-          <div class="post">
-            <div class="feat-img">
+        <div className="wrap">
+          <div className="post">
+            <div className="feat-img">
               <img src={bitCoinUnknown} alt="coin" height="100" width="100" />
             </div>
             <article>
@@ -212,7 +212,7 @@ class Blog extends Component {
                 href="https://www.cnbc.com/2017/12/01/james-altuchers-bitcoin-predictions.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="more-link"
+                className="more-link"
               >
                 Read More
               </a>

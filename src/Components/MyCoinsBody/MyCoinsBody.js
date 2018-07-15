@@ -3,25 +3,27 @@ import CoinItem from "../CoinItem/CoinItem.js";
 import MyCoinsTable from "../MyCoinsTable/MyCoinsTable.js";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-// import {
-//   getAllCoins,
-//   getMyCoins,
-//   addMyCoin,
-//   removeMyCoin,
-//   getMyCoinPrices
-// } from "../../Actions/actionCreators";
+import {
+  getAllCoins,
+  getMyCoins,
+  addMyCoin,
+  removeMyCoin,
+  getMyCoinPrices
+} from "../../store/actionCreators";
 import { Link, Route, Redirect } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 
 class AddCoins extends Component {
   constructor(props) {
     super(props);
+    console.log("MyCoinsBody - this.props", this.props);
+
     // this.updateMyCoinPrices = this.updateMyCoinPrices.bind(this);
   }
 
   componentDidMount() {
     console.log("MyCoinsBody.js component did mount");
-    // this.updateMyCoinPrices();
+    this.updateMyCoinPrices();
   }
 
   handleAdd(val) {
@@ -32,7 +34,6 @@ class AddCoins extends Component {
     console.log("removeMyCoin called");
     this.props.removeMyCoin(id);
   }
-
   render() {
     let myCoins = this.props.myCoins.map(val => (
       <CoinItem

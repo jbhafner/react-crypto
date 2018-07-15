@@ -1,14 +1,50 @@
-import React from "react";
-import AppBar from "material-ui/AppBar";
 import React, { Component } from "react";
-import Paper from "material-ui/Paper";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import AddCoins from "../MyCoinsHeader/MyCoinsHeader";
+import AppBar from "material-ui/AppBar";
+import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
+import backgroundImage from "../../images/charnaTop.jpg";
+import Blog from "../Blog/Blog";
+import Button from "@material-ui/core/Button";
+import ContactUs from "../ContactUs/ContactUs";
+import cryptoLogo from "../../images/cryptoLogo.png";
+import Drawer from "material-ui/Drawer";
+import FAQ from "../FAQ/FAQ";
+import FlatButton from "material-ui/FlatButton";
+import Footer from "../Footer/foot.js";
+import FVArticle from "../Resources/FVArticle";
+import Home from "../Home/Home";
+import Login from "../Login2/Login2";
+import LoginScreen from "../LoginScreen/LoginScreen";
 import Menu from "material-ui/Menu";
 import MenuItem from "material-ui/MenuItem";
-import FlatButton from "material-ui/FlatButton";
+import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
+import Paper from "material-ui/Paper";
+import Regulations from "../Resources/Regulations";
+import silverCoin from "../../images/silverCoin.png";
+import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
+import { connect } from "react-redux";
+import { logout } from "../../store/actions/auth";
+import "./NAVBar.css";
+import Toolbar from "@material-ui/core/Toolbar";
 
+// const styles = theme => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//     margin: "5px"
+//   }
+// });
+
+const style = {
+  margin: "5px",
+  color: "white"
+};
 class NAVBar extends Component {
   constructor(props) {
     super(props);
+    const { classes } = props;
 
     this.state = {
       open: false,
@@ -16,9 +52,14 @@ class NAVBar extends Component {
     };
   }
 
-  componentDidMount() {
-    this.updateData();
-  }
+  logout = e => {
+    e.preventDefault();
+    this.props.logout();
+  };
+
+  // componentDidMount() {
+  //   this.updateData();
+  // }
 
   handleToggle = () => this.setState({ open: !this.state.open });
 
@@ -96,15 +137,47 @@ class NAVBar extends Component {
 
     return (
       <div className="App">
-        <div>
-          <img src={cryptoLogo} alt="CryptoLogo" />
-        </div>
-
         <AppBar
           iconClassNameRight="muidocs-icon-navigation-expand-more"
+          style={{ position: "fixed", top: 0 }}
           title="CryptoTracker"
           onLeftIconButtonClick={this.handleToggle}
-        />
+        >
+          <div>
+            <Toolbar>
+              {this.props.currentUser.isAuthenticated ? (
+                <Button
+                  onClick={this.logout}
+                  component={Link}
+                  to="/signin"
+                  variant="outlined"
+                  style={style}
+                >
+                  Log Out
+                </Button>
+              ) : (
+                <div>
+                  <Button
+                    component={Link}
+                    to="/signin"
+                    variant="outlined"
+                    style={style}
+                  >
+                    Log In
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/signup"
+                    variant="outlined"
+                    style={style}
+                  >
+                    Sign Up
+                  </Button>
+                </div>
+              )}
+            </Toolbar>
+          </div>
+        </AppBar>
 
         <Drawer
           docked={false}
@@ -112,35 +185,77 @@ class NAVBar extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title="CryptoTracker" />
-          <MenuItem onClick={this.showHome}>Home</MenuItem>
-          <MenuItem onClick={this.showAddCoins}>Add Coins</MenuItem>
-          <MenuItem onClick={this.showBlog}>Blog</MenuItem>
+          <AppBar title="CT" />
+          <MenuItem
+            onClick={this.showHome}
+            containerElement={<Link to="/" />}
+            primaryText="Home"
+          />
+          {this.props.currentUser.isAuthenticated ? (
+            <MenuItem
+              onClick={this.showAddCoins}
+              containerElement={<Link to="/addcoins" />}
+              primaryText="Add Coins"
+            />
+          ) : null}
+          <MenuItem
+            onClick={this.showBlog}
+            containerElement={<Link to="/blog" />}
+            primaryText="Blog"
+          />
           <MenuItem
             primaryText="Resources"
             rightIcon={<ArrowDropRight />}
             menuItems={[
               <MenuItem
                 onClick={this.showFVArticle}
+                containerElement={<Link to="/resources/xbtFVArticle" />}
                 primaryText="Bitcoin Futures Article"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
+                containerElement={<Link to="/resources/xbtFVCalculator" />}
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
-
               <MenuItem primaryText="Other2" />,
               <MenuItem primaryText="Other3" />
             ]}
           />
 
-          <MenuItem onClick={this.showFAQ}>FAQ</MenuItem>
-          <MenuItem onClick={this.showContact}>Contact</MenuItem>
+          <MenuItem
+            onClick={this.showFAQ}
+            containerElement={<Link to="/faq" />}
+            primaryText="FAQ"
+          />
+          <MenuItem
+            onClick={this.showContact}
+            containerElement={<Link to="/contact" />}
+            primaryText="Contact Us"
+          />
           <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
+        <Button color="inherit">
+          <Link to="/signin">Login</Link>
+        </Button>
+        <Button color="inherit">
+          <Link to="/signin">Sign Up</Link>
+        </Button>
       </div>
     );
   }
 }
 
-export default NAVBar;
+function mapStateToProps(state) {
+  return {
+    open: state.open,
+    show: state.show,
+    currentUser: state.currentUser
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(NAVBar);
+
+// export default NAVBar;

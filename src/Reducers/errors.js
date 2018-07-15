@@ -1,4 +1,4 @@
-import { ADD_ERROR, REMOVE_ERROR } from "../Actions/actionCreators";
+import { ADD_ERROR, REMOVE_ERROR } from "../store/actionCreators";
 
 export default (state = { message: null }, action) => {
   switch (action.type) {

@@ -4,11 +4,11 @@ import {
   GET_MY_COIN_PRICES,
   ADD_MY_COIN,
   REMOVE_MY_COIN
-} from "../Actions/actionCreators";
+} from "../store/actionCreators";
 
 const initalState = {
   allCoins: [],
-  myCoins: [],
+  myCoins: [{ symbol: "BTC", name: "Bitcoin" }],
   myCoinPrices: []
 };
 

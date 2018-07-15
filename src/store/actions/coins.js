@@ -1,0 +1,53 @@
+import { apiCall } from "../../services/api";
+import { addError } from "./errors";
+import {
+  GET_ALL_COINS,
+  GET_MY_COINS,
+  GET_MY_COIN_PRICES,
+  ADD_MY_COIN,
+  REMOVE_MY_COIN
+} from "../actionCreators";
+
+export const loadCoins = myCoins => ({
+  type: GET_MY_COINS,
+  myCoins
+});
+
+export const remove = id => ({
+  type: REMOVE_MY_COIN,
+  id
+});
+
+export const removeCoin = (user_id, coin_id) => {
+  console.log("removeCoin called");
+  return dispatch => {
+    return apiCall("delete", `/api/users/${user_id}/myCoins/${coin_id}`)
+      .then(() => dispatch(remove(coin_id)))
+      .catch(err => {
+        addError(err.message);
+      });
+  };
+};
+
+export const fetchCoins = () => {
+  console.log("fetchCoins called");
+  return dispatch => {
+    return apiCall("get", "/api/myCoins")
+      .then(res => {
+        console.log("fetchCoins / res", res);
+        dispatch(loadCoins(res));
+      })
+      .catch(err => {
+        console.log("fetchCoins / catch called / err", err);
+        dispatch(addError(err.message));
+      });
+  };
+};
+
+export const postNewCoin = coin => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const id = currentUser.user.id;
+  return apiCall("post", `/api/users/${id}/myCoins`, { coin })
+    .then(res => {})
+    .catch(err => dispatch(addError(err.message)));
+};

@@ -19,7 +19,7 @@ class FAQ extends Component {
           </h1>
 
           <div>
-            <p class="faq-question" onClick={() => this.handleClick(1)}>
+            <p className="faq-question" onClick={() => this.handleClick(1)}>
               How do I update my coin values?
             </p>
             {this.state.showing === 1 ? (
