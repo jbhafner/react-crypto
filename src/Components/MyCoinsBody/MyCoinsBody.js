@@ -6,10 +6,9 @@ import { connect } from "react-redux";
 import {
   getAllCoins,
   getMyCoins,
-  addMyCoin,
-  removeMyCoin,
   getMyCoinPrices
 } from "../../store/actionCreators";
+import { removeCoin, postNewCoin } from "../../store/actions/coins";
 import { Link, Route, Redirect } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 
@@ -23,28 +22,30 @@ class AddCoins extends Component {
 
   componentDidMount() {
     console.log("MyCoinsBody.js component did mount");
-    this.updateMyCoinPrices();
+    // this.props.updateMyCoinPrices();
   }
 
   handleAdd(val) {
-    this.props.addMyCoin(val);
+    this.props.postNewCoin(val);
   }
 
-  removeMyCoin(id) {
-    console.log("removeMyCoin called");
-    this.props.removeMyCoin(id);
+  removeCoin(user_id, coin_id) {
+    console.log("removeCoin called / user_id:", user_id, "coin_id", coin_id);
+    this.props.removeCoin(user_id, coin_id);
   }
   render() {
     let myCoins = this.props.myCoins.map(val => (
       <CoinItem
         key={val._id}
-        removeMyCoin={this.removeMyCoin.bind(this, val._id)}
+        removeCoin={this.removeCoin.bind(this, val.user._id, val._id)}
         name={val.name}
         symbol={val.symbol}
         website_slug={val.website_slug}
         id={val.id}
       />
     ));
+
+    // let { myCoins } = this.props;
 
     let myCoinsTable = <MyCoinsTable myCoins={this.props.myCoins} />;
 

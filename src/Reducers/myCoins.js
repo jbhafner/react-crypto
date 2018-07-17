@@ -13,11 +13,12 @@ const initalState = {
 };
 
 export default (state = initalState, action) => {
+  console.log("myCoins.js - action", action);
   switch (action.type) {
     case GET_ALL_COINS:
       return { ...state, allCoins: action.data };
     case GET_MY_COINS:
-      return { ...state, myCoins: action.data };
+      return { ...state, myCoins: action.myCoins };
     case GET_MY_COIN_PRICES:
       return { ...state, myCoinPrices: action.data };
     case ADD_MY_COIN:

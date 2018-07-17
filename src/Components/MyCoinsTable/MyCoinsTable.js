@@ -20,14 +20,13 @@ const styles = theme => ({
 });
 
 function MyCoinsTable(props) {
-  const { classes, myCoins, removeMyCoin } = props;
+  const { classes, myCoins, removeCoin } = props;
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell numeric>ID</TableCell>
             <TableCell numeric>Symbol</TableCell>
             <TableCell numeric>Name</TableCell>
             <TableCell>Purchase Date</TableCell>
@@ -41,7 +40,6 @@ function MyCoinsTable(props) {
           {myCoins.map(n => {
             return (
               <TableRow key={n._id}>
-                <TableCell numeric>{n._id}</TableCell>
                 <TableCell component="th" scope="row">
                   {n.symbol}
                 </TableCell>
@@ -50,10 +48,12 @@ function MyCoinsTable(props) {
                 <TableCell numeric>{n.baseCurrency}</TableCell>
                 <TableCell numeric>{n.price}</TableCell>
                 <TableCell numeric>{n.amount}</TableCell>
-                <TableCell numeric>{n.price * n.amount}</TableCell>
+                <TableCell numeric>
+                  {isNaN(n.price * n.amount) ? null : n.price * n.amount}
+                </TableCell>
                 <TableCell numeric>
                   <span>
-                    <button onClick={removeMyCoin}>X</button>
+                    <button onClick={removeCoin}>X</button>
                   </span>
                 </TableCell>
               </TableRow>

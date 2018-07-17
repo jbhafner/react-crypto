@@ -1,29 +1,29 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+// import PropTypes from "prop-types";
+// import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import AddCoins from "../MyCoinsHeader/MyCoinsHeader";
 import AppBar from "material-ui/AppBar";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
-import backgroundImage from "../../images/charnaTop.jpg";
+// import backgroundImage from "../../images/charnaTop.jpg";
 import Blog from "../Blog/Blog";
 import Button from "@material-ui/core/Button";
 import ContactUs from "../ContactUs/ContactUs";
-import cryptoLogo from "../../images/cryptoLogo.png";
+// import cryptoLogo from "../../images/cryptoLogo.png";
 import Drawer from "material-ui/Drawer";
 import FAQ from "../FAQ/FAQ";
-import FlatButton from "material-ui/FlatButton";
-import Footer from "../Footer/foot.js";
+// import FlatButton from "material-ui/FlatButton";
+// import Footer from "../Footer/foot.js";
 import FVArticle from "../Resources/FVArticle";
 import Home from "../Home/Home";
 import Login from "../Login2/Login2";
-import LoginScreen from "../LoginScreen/LoginScreen";
-import Menu from "material-ui/Menu";
+// import LoginScreen from "../LoginScreen/LoginScreen";
+// import Menu from "material-ui/Menu";
 import MenuItem from "material-ui/MenuItem";
-import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
-import Paper from "material-ui/Paper";
+// import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
+// import Paper from "material-ui/Paper";
 import Regulations from "../Resources/Regulations";
-import silverCoin from "../../images/silverCoin.png";
+// import silverCoin from "../../images/silverCoin.png";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import { connect } from "react-redux";
 import { logout } from "../../store/actions/auth";
@@ -194,8 +194,8 @@ class NAVBar extends Component {
           {this.props.currentUser.isAuthenticated ? (
             <MenuItem
               onClick={this.showAddCoins}
-              containerElement={<Link to="/addcoins" />}
-              primaryText="Add Coins"
+              containerElement={<Link to="/myCoinsList" />}
+              primaryText="My Coins"
             />
           ) : null}
           <MenuItem

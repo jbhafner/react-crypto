@@ -11,13 +11,13 @@ const CoinItem = ({
   price,
   amount,
   total,
-  removeMyCoin
+  removeCoin
 }) => (
   <div id="crypto-container">
     <span className="left">{symbol}</span>
     <span>{name}</span>
     <span>
-      <button onClick={removeMyCoin}>X</button>
+      <button onClick={removeCoin}>X</button>
     </span>
   </div>
 );
