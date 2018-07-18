@@ -99,12 +99,14 @@ class Home extends Component {
 
   getCurrentPriceData = () => {
     console.log("getCurrentPriceData funtion called");
-    axios
-      .get(
-        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,BCH,IOT&tsyms=USD"
-      )
-      .then(res => {
-        const cryptos = res.data;
+    // axios.defaults.headers.common = {};
+    // axios.defaults.headers.common.accept = "application/json";
+    fetch(
+      "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,BCH,IOT&tsyms=USD"
+    )
+      .then(res => res.json())
+      .then(data => {
+        const cryptos = data;
         console.log("getCurrentPriceData / cryptos: ", cryptos);
         this.setState({ cryptos: cryptos });
       });
@@ -113,12 +115,13 @@ class Home extends Component {
   getCryptoChartData = () => {
     var arrayTime = [];
     var arrayPrice = [];
-    axios
-      .get(
-        "https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=24&aggregate=1"
-      )
-      .then(res => {
-        const histData = res.data;
+    fetch(
+      "https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=24&aggregate=1"
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log("data", data);
+        const histData = data;
         for (var i = 0; i < histData.Data.length; i++) {
           var chartTimeUnix = moment.unix(histData.Data[i].time);
           var chartTimePretty = chartTimeUnix.format("MMM-DD HH:mm");
