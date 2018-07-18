@@ -2,13 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewCoin } from "../../store/actions/coins";
 // import MyCoinsDropDown from "../MyCoinsDropdown/MyCoinsDropdown";
-import TextField from "material-ui/TextField";
-import Button from "@material-ui/core/Button";
-
-const style = {
-  margin: "5px",
-  color: "white"
-};
 
 class MyCoinsNewForm extends Component {
   constructor(props) {
@@ -36,7 +29,7 @@ class MyCoinsNewForm extends Component {
     console.log("this.state", this.state);
     this.props.postNewCoin({ ...this.state });
     // event.target.reset();
-    this.props.history.push("/myCoinsList/list");
+    this.props.history.push("/addcoins");
   };
 
   handleChange(event) {
@@ -53,65 +46,51 @@ class MyCoinsNewForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleNewCoin}>
-        <TextField
+        <label htmlFor="symbol">Symbol</label>
+        <input
           type="text"
           name="symbol"
           id="symbol"
-          hintText="Cryptocurrency Symbol - ex. BTC for Bitcoin"
-          floatingLabelText="Cryptocurrency Symbol"
           onChange={this.handleChange}
         />
         <br />
-        <TextField
-          type="text"
-          name="name"
-          id="name"
-          floatingLabelText="Name"
-          onChange={this.handleChange}
-        />
+        <label htmlFor="name">Name</label>
+        <input type="text" name="name" id="name" onChange={this.handleChange} />
         <br />
-        <TextField
+        <label htmlFor="purchDate">Purchase Date</label>
+        <input
           type="text"
           name="purchDate"
           id="purchDate"
-          floatingLabelText="Purchase Date"
           onChange={this.handleChange}
         />
         <br />
-        <TextField
+        <label htmlFor="baseCurrency">Base Currency</label>
+        <input
           type="text"
           name="baseCurrency"
           id="baseCurrency"
-          floatingLabelText="Base Currency"
           defaultValue="BTC"
           onChange={this.handleChange}
         />
         <br />
-        <TextField
+        <label htmlFor="price">Price</label>
+        <input
           type="text"
           name="price"
           id="price"
-          floatingLabelText="Price"
           onChange={this.handleChange}
         />
         <br />
-        <TextField
+        <label htmlFor="amount">Amount</label>
+        <input
           type="text"
           name="amount"
           id="amount"
-          floatingLabelText="Amount"
           onChange={this.handleChange}
         />
         <br />
-        <Button
-          type="submit"
-          label="Add A Coin"
-          className="button-submit"
-          style={style}
-          variant="contained"
-        >
-          Add A Coin
-        </Button>
+        <button>Add A Crypto-Coin</button>
       </form>
     );
   }

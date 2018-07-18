@@ -3,20 +3,18 @@ import MyCoinsBody from "../MyCoinsBody/MyCoinsBody.js";
 import MyCoinsNewForm from "../MyCoinsNewForm/MyCoinsNewForm.js";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { fetchCoins } from "../../store/actions/coins";
+import { fetchCoins, postNewCoin, removeCoin } from "../../store/actions/coins";
 import {
   getAllCoins,
   getMyCoins,
-  getMyCoinPrices,
-  addMyCoin,
-  removeMyCoin
+  getMyCoinPrices
 } from "../../store/actionCreators";
 import {
   BrowserRouter as Router,
   Link,
   Route,
-  Redirect,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import withAuth from "../../hocs/withAuth.js";
@@ -25,26 +23,35 @@ import CoinItem from "../CoinItem/CoinItem";
 class MyCoinsHeader extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      newCoin: ""
+    };
     this.handleAdd = this.handleAdd.bind(this);
     this.updateMyCoinPrices = this.updateMyCoinPrices.bind(this);
     this.updateCoins = this.updateCoins.bind(this);
   }
 
+  // let testID = this.props.currentUser.user.id;
+  // console.log("MyCoinsHeader.js / testID", testID);
+
   componentDidMount() {
     // this.updateCoins();
-    console.log("called getMyCoins from componentDidMount");
-    this.props.fetchCoins();
+    let id = this.props.id;
+    console.log("called getMyCoins from componentDidMount - id = ", id);
+    this.props.fetchCoins(id);
     // this.updateMyCoinPrices();
   }
 
-  handleAdd(val) {
-    console.log("handleAdd(val)", val);
-    this.props.addMyCoin(val);
-  }
+  handleAdd = event => {
+    // console.log("handleAdd(val)", val);
+    this.props.postNewCoin(this.state.newCoin);
+    this.setState({ newCoin: "" });
+    this.props.history.push("/");
+  };
 
-  removeMyCoin(id) {
-    console.log("removeMyCoin called");
-    this.props.removeMyCoin(id);
+  removeCoin(id) {
+    console.log("removeCoin called");
+    this.props.removeCoin(id);
   }
 
   async updateMyCoinPrices() {
@@ -84,6 +91,21 @@ class MyCoinsHeader extends Component {
     await console.log("componentDidMount - this.props", this.props);
   }
   render() {
+    const { coins } = this.props;
+    console.log("MyCoinsHeader.js - this.props", this.props);
+    console.log("MyCoinsHeader.js - coins", coins);
+    // console.log("MyCoinsHeader.js - coins.myCoins", coins.myCoins);
+    let myCoinList = this.props.myCoins.map(val => (
+      <CoinItem
+        key={val._id}
+        removeCoin={this.removeCoin.bind(this, val._id)}
+        name={val.name}
+        symbol={val.symbol}
+        website_slug={val.website_slug}
+        id={val.id}
+      />
+    ));
+
     return (
       <Router>
         <div className="Home">
@@ -91,33 +113,35 @@ class MyCoinsHeader extends Component {
             <Toolbar className="addCoinToolbar">
               <ToolbarTitle text="My Coin List" />
               <Button color="inherit">
-                <Link to="/coins">My Coins</Link>
+                <Link to="/myCoinsList/list">My Coins</Link>
               </Button>
               <Button color="inherit">
-                <Link to="/coins/new">Add Coin</Link>
+                <Link to="/myCoinsList/new">Add Coin</Link>
               </Button>
             </Toolbar>
             <br />
             <Switch>
               <Route
-                path="/coins/new"
-                component={props =>
-                  withAuth(
-                    <MyCoinsNewForm {...props} handleSubmit={this.handleAdd} />
-                  )
-                }
+                exact
+                path="/myCoinsList/new"
+                component={props => (
+                  <MyCoinsNewForm {...props} handleSubmit={this.handleAdd} />
+                )}
               />
+
               <Route
                 exact
-                path="/coins"
+                path="/myCoinsList/list"
                 component={props => (
                   <MyCoinsBody
+                    myCoinList={myCoinList}
                     {...props}
                     key={this.props.myCoins._id}
                     allCoins={this.props.allCoins}
                     myCoins={this.props.myCoins}
                     myCoinPrices={this.props.myCoinPrices}
-                    removeMyCoin={this.props.removeMyCoin}
+                    removeCoin={this.props.removeCoin}
+                    updateMyCoinPrices={this.props.updateMyCoinPrices}
                   />
                 )}
               />
@@ -134,21 +158,22 @@ class MyCoinsHeader extends Component {
 function mapStateToProps(reduxState) {
   console.log("MyCoinsHeader.js - mapStateToProps/reduxState", reduxState);
   return {
-    allCoins: reduxState.allCoins,
-    myCoins: reduxState.myCoins,
-    myCoinPrices: reduxState.myCoinPrices
+    allCoins: reduxState.coins.allCoins,
+    myCoins: reduxState.coins.myCoins,
+    myCoinPrices: reduxState.coins.myCoinPrices,
+    id: reduxState.currentUser.user.id
   };
 }
 
 export default connect(
   mapStateToProps,
   {
+    removeCoin,
+    postNewCoin,
     fetchCoins,
     getAllCoins,
     getMyCoins,
-    getMyCoinPrices,
-    addMyCoin,
-    removeMyCoin
+    getMyCoinPrices
   }
 )(MyCoinsHeader);
 

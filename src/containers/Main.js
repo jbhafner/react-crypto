@@ -1,7 +1,7 @@
 import React from "react";
 // import { Provider } from "react-redux";
 import { configureStore } from "../store";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
@@ -44,6 +44,7 @@ const paperStyle = {
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser, myCoins } = props;
+  console.log("Main.js / this.props", props);
   return (
     <Paper style={paperStyle} zDepth={5}>
       <div>
@@ -55,8 +56,10 @@ const Main = props => {
           />
           <Route
             exact
-            path="/addcoins"
-            render={props => <AddCoins myCoins={myCoins} {...props} />}
+            path="/myCoinsList"
+            render={props => (
+              <AddCoins id={currentUser.user.id} myCoins={myCoins} {...props} />
+            )}
           />
           <Route exact path="/blog" render={props => <Blog />} />
           <Route

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
+// import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 
@@ -42,15 +42,8 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { email, username, password, profileImageUrl } = this.state;
-    const {
-      heading,
-      buttonText,
-      signUp,
-      errors,
-      history,
-      removeError
-    } = this.props;
+    const { email, username, password } = this.state;
+    const { heading, signUp, errors, history, removeError } = this.props;
 
     history.listen(() => {
       removeError();

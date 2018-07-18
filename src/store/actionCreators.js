@@ -68,38 +68,39 @@ export function getMyCoinPrices(coinPrices) {
   });
 }
 
-export function addMyCoin(coin) {
-  debugger;
-  console.log("addMyCoin funtion called from actionCreator - coin = ", coin);
-  return dispatch => {
-    return fetch("http://localhost:3025/api/coins", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json"
-      }),
-      body: JSON.stringify({
-        symbol: coin.symbol,
-        purchDate: coin.purchDate,
-        name: coin.name,
-        baseCurrency: coin.baseCurrency,
-        price: coin.price,
-        amount: coin.amount
-      })
-    })
-      .then(res => res.json())
-      .then(data => dispatch(handleAddCoin(data)))
-      .catch(err => console.log("Something went wrong", err));
-  };
-}
+// export function addMyCoin(coin) {
+//   debugger;
+//   console.log("addMyCoin funtion called from actionCreator - coin = ", coin);
+//   return dispatch => {
+//     return fetch("http://localhost:3025/api/users/:id/myCoins", {
+//       method: "POST",
+//       headers: new Headers({
+//         "Content-Type": "application/json",
+//         Authorization: ""
+//       }),
+//       body: JSON.stringify({
+//         symbol: coin.symbol,
+//         purchDate: coin.purchDate,
+//         name: coin.name,
+//         baseCurrency: coin.baseCurrency,
+//         price: coin.price,
+//         amount: coin.amount
+//       })
+//     })
+//       .then(res => res.json())
+//       .then(data => dispatch(handleAddCoin(data)))
+//       .catch(err => console.log("Something went wrong", err));
+//   };
+// }
 
-export function removeMyCoin(id) {
-  debugger;
-  return dispatch => {
-    return fetch(`http://localhost:3025/api/coins/${id}`, {
-      method: "DELETE"
-    })
-      .then(res => res.json())
-      .then(data => dispatch(handleRemoveCoin(id)))
-      .catch(err => console.log("Something went wrong!", err));
-  };
-}
+// export function removeMyCoin(id) {
+//   debugger;
+//   return dispatch => {
+//     return fetch(`http://localhost:3025/api/coins/${id}`, {
+//       method: "DELETE"
+//     })
+//       .then(res => res.json())
+//       .then(data => dispatch(handleRemoveCoin(id)))
+//       .catch(err => console.log("Something went wrong!", err));
+//   };
+// }
