@@ -232,7 +232,6 @@ class NAVBar extends Component {
             containerElement={<Link to="/contact" />}
             primaryText="Contact Us"
           />
-          <MenuItem onClick={this.showLogin}>Login</MenuItem>
         </Drawer>
         <Button color="inherit">
           <Link to="/signin">Login</Link>
