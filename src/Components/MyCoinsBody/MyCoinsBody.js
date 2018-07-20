@@ -8,7 +8,7 @@ import {
   getMyCoins,
   getMyCoinPrices
 } from "../../store/actionCreators";
-import { removeCoin, postNewCoin } from "../../store/actions/coins";
+// import { fetchCoins, removeCoin, postNewCoin } from "../../store/actions/coins";
 import { Link, Route, Redirect } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 
@@ -20,9 +20,19 @@ class AddCoins extends Component {
     // this.updateMyCoinPrices = this.updateMyCoinPrices.bind(this);
   }
 
+  componentWillUpdate() {
+    let id = this.props.id;
+    this.props.fetchCoins(id);
+    console.log("MyCoinsBody.js/componentWillUpdate - this.props", this.props);
+  }
   componentDidMount() {
     console.log("MyCoinsBody.js component did mount");
     // this.props.updateMyCoinPrices();
+
+    // console.log(
+    //   "MyCoinsBody.js - after component did mount - props",
+    //   this.props
+    // );
   }
 
   handleAdd(val) {
@@ -34,6 +44,14 @@ class AddCoins extends Component {
     this.props.removeCoin(user_id, coin_id);
   }
   render() {
+    console.log(
+      "MyCoinsBody.js/render - this.props.myCoins",
+      this.props.myCoins,
+      "this.props.myCoins[0]._id",
+      this.props.myCoins[0]._id,
+      "isArr?",
+      Array.isArray(this.props.myCoins)
+    );
     let myCoins = this.props.myCoins.map(val => (
       <CoinItem
         key={val._id}

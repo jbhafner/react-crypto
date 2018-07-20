@@ -6,13 +6,13 @@ import {
   REMOVE_MY_COIN
 } from "../store/actionCreators";
 
-const initalState = {
+const initialState = {
   allCoins: [],
   myCoins: [{ symbol: "BTC", name: "Bitcoin" }],
   myCoinPrices: []
 };
 
-export default (state = initalState, action) => {
+export default (state = initialState, action) => {
   console.log("myCoins.js - action", action);
   switch (action.type) {
     case GET_ALL_COINS:
@@ -22,7 +22,11 @@ export default (state = initalState, action) => {
     case GET_MY_COIN_PRICES:
       return { ...state, myCoinPrices: action.data };
     case ADD_MY_COIN:
-      return { ...state, myCoins: [...state.myCoins, action.data] };
+      console.log("myCoins.js called - state", state, "action", action);
+      return {
+        ...state,
+        myCoins: [...state.myCoins, { ...action.coin }]
+      };
     case REMOVE_MY_COIN:
       let coins = state.myCoins.filter(val => val._id !== action.id);
       return { ...state, myCoins: coins };

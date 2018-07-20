@@ -18,6 +18,11 @@ export const remove = id => ({
   id
 });
 
+export const addCoin = coin => ({
+  type: ADD_MY_COIN,
+  coin
+});
+
 export const removeCoin = (user_id, coin_id) => {
   console.log("removeCoin called / user_id:", user_id, "coin_id", coin_id);
   return dispatch => {
@@ -35,7 +40,7 @@ export const fetchCoins = id => {
   return dispatch => {
     return apiCall("get", `/api/users/${id}/myCoins`)
       .then(res => {
-        // console.log("fetchCoins / res", res);
+        console.log("fetchCoins / res", res);
         dispatch(loadCoins(res));
       })
       .catch(err => {
@@ -56,6 +61,10 @@ export const postNewCoin = coin => (dispatch, getState) => {
     coin
   );
   return apiCall("post", `/api/users/${id}/myCoins`, { ...coin })
-    .then(res => {})
+    .then(res => {
+      // dispatch(loadCoins(res));
+      console.log("actions/coin.js/postNewCoin - res", res);
+      dispatch(addCoin(res));
+    })
     .catch(err => dispatch(addError(err.message)));
 };

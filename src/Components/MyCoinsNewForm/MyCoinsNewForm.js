@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { postNewCoin } from "../../store/actions/coins";
+import { postNewCoin, fetchCoins } from "../../store/actions/coins";
 // import MyCoinsDropDown from "../MyCoinsDropdown/MyCoinsDropdown";
 import TextField from "material-ui/TextField";
 import Button from "@material-ui/core/Button";
@@ -28,14 +28,25 @@ class MyCoinsNewForm extends Component {
     console.log("this.state", this.state);
   }
 
+  // componentWillUnmount() {
+  //   let id = this.props.id;
+  //   this.props.fetchCoins(id);
+  // }
   handleNewCoin = event => {
     console.log("event", event);
     event.preventDefault();
-    console.log("this.props.handleSubmit", this.handleSubmit);
-    console.log("this.state.symbol", this.state.symbol);
-    console.log("this.state", this.state);
+    console.log(
+      "MyNewCoinsForm.js/handleNewCoin - this.props.handleSubmit",
+      this.handleSubmit
+    );
+    console.log(
+      "MyNewCoinsForm.js/handleNewCoin - this.state.symbol",
+      this.state.symbol
+    );
+    console.log("MyNewCoinsForm.js/handleNewCoin - this.state", ...this.state);
     this.props.postNewCoin({ ...this.state });
     // event.target.reset();
+    this.setState({});
     this.props.history.push("/myCoinsList/list");
   };
 
@@ -53,6 +64,7 @@ class MyCoinsNewForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleNewCoin}>
+        {this.props.errors.message && <div>{this.props.errors}</div>}
         <TextField
           type="text"
           name="symbol"
@@ -119,6 +131,7 @@ class MyCoinsNewForm extends Component {
 
 function mapStateToProps(state) {
   return {
+    errors: state.errors,
     newCoin: state
   };
 }

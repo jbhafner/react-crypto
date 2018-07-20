@@ -29,6 +29,7 @@ class MyCoinsHeader extends Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.updateMyCoinPrices = this.updateMyCoinPrices.bind(this);
     this.updateCoins = this.updateCoins.bind(this);
+    // let id = this.props.id;
   }
 
   // let testID = this.props.currentUser.user.id;
@@ -125,7 +126,11 @@ class MyCoinsHeader extends Component {
                 exact
                 path="/myCoinsList/new"
                 component={props => (
-                  <MyCoinsNewForm {...props} handleSubmit={this.handleAdd} />
+                  <MyCoinsNewForm
+                    {...props}
+                    handleSubmit={this.handleAdd}
+                    fetchCoins={this.props.fetchCoins}
+                  />
                 )}
               />
 
@@ -134,12 +139,14 @@ class MyCoinsHeader extends Component {
                 path="/myCoinsList/list"
                 component={props => (
                   <MyCoinsBody
+                    id={this.props.id}
                     myCoinList={myCoinList}
                     {...props}
                     key={this.props.myCoins._id}
                     allCoins={this.props.allCoins}
                     myCoins={this.props.myCoins}
                     myCoinPrices={this.props.myCoinPrices}
+                    fetchCoins={this.props.fetchCoins}
                     removeCoin={this.props.removeCoin}
                     updateMyCoinPrices={this.props.updateMyCoinPrices}
                   />
