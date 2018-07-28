@@ -3,12 +3,11 @@ import CoinItem from "../CoinItem/CoinItem.js";
 import MyCoinsTable from "../MyCoinsTable/MyCoinsTable.js";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import {
-  getAllCoins,
-  getMyCoins,
-  getMyCoinPrices
-} from "../../store/actionCreators";
-// import { fetchCoins, removeCoin, postNewCoin } from "../../store/actions/coins";
+// import {
+//   getAllCoins,
+//   getMyCoins,
+//   getMyCoinPrices
+// } from "../../store/actionCreators";
 import { Link, Route, Redirect } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 
@@ -47,8 +46,8 @@ class AddCoins extends Component {
     console.log(
       "MyCoinsBody.js/render - this.props.myCoins",
       this.props.myCoins,
-      "this.props.myCoins[0]._id",
-      this.props.myCoins[0]._id,
+      // "this.props.myCoins[0]._id",
+      // this.props.myCoins[0]._id,
       "isArr?",
       Array.isArray(this.props.myCoins)
     );

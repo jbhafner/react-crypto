@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-// import AppBar from "material-ui/AppBar";
+// import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import Button from "@material-ui/core/Button";
+import "./AuthForm.css";
 
 const style = {
-  margin: 15
+  margin: "5px",
+  color: "white"
 };
 class AuthForm extends Component {
   constructor(props) {
@@ -49,58 +51,55 @@ class AuthForm extends Component {
       removeError();
     });
     return (
-      <div>
-        <MuiThemeProvider>
-          <form onSubmit={this.handleSubmit}>
-            <h2>{heading}</h2>
-            {errors.message && (
-              <div className="alert alert-danger">{errors.message}</div>
-            )}
+      <div className="AuthForm">
+        <form onSubmit={this.handleSubmit}>
+          <h2>{heading}</h2>
+          {errors.message && (
+            <div className="alert alert-danger">{errors.message}</div>
+          )}
+          <div>
+            <TextField
+              id="email"
+              name="email"
+              hintText="Enter your E-mail"
+              floatingLabelText="E-mail"
+              onChange={this.handleChange}
+              value={email}
+              type="text"
+            />
+            <br />
+            <TextField
+              id="password"
+              name="password"
+              hintText="Enter your Password"
+              floatingLabelText="Password"
+              onChange={this.handleChange}
+              type="password"
+            />
+            <br />
+          </div>
+          {signUp && (
             <div>
               <TextField
-                id="email"
-                name="email"
-                hintText="Enter your E-mail"
-                floatingLabelText="E-mail"
+                id="username"
+                name="username"
+                hintText="Enter your Username"
+                floatingLabelText="Username"
                 onChange={this.handleChange}
-                value={email}
+                value={username}
                 type="text"
               />
-              <br />
-              <TextField
-                id="password"
-                name="password"
-                hintText="Enter your Password"
-                floatingLabelText="Password"
-                onChange={this.handleChange}
-                type="password"
-              />
-              <br />
             </div>
-            {signUp && (
-              <div>
-                <TextField
-                  id="username"
-                  name="username"
-                  hintText="Enter your Username"
-                  floatingLabelText="Username"
-                  onChange={this.handleChange}
-                  value={username}
-                  type="text"
-                />
-                <br />
-              </div>
-            )}
-            <div>
-              <RaisedButton
-                label="Submit"
-                primary={true}
-                style={style}
-                type="submit"
-              />
-            </div>
-          </form>
-        </MuiThemeProvider>
+          )}
+          <div>
+            <RaisedButton
+              label="Submit"
+              primary={true}
+              style={style}
+              type="submit"
+            />
+          </div>
+        </form>
       </div>
     );
   }

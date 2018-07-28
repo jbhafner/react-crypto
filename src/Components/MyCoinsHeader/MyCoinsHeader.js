@@ -17,7 +17,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
-import withAuth from "../../hocs/withAuth.js";
+// import withAuth from "../../hocs/withAuth.js";
 import CoinItem from "../CoinItem/CoinItem";
 
 class MyCoinsHeader extends Component {

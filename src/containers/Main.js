@@ -1,6 +1,5 @@
 import React from "react";
-// import { Provider } from "react-redux";
-import { configureStore } from "../store";
+// import { configureStore } from "../store";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { authUser } from "../store/actions/auth";
@@ -8,28 +7,16 @@ import { removeError } from "../store/actions/errors";
 import AuthForm from "../Components/AuthForm/AuthForm";
 
 import Home from "../Components/Home/Home";
-// import MyCoinsHeader from "../Components/MyCoinsHeader/MyCoinsHeader";
 import Blog from "../Components/Blog/Blog";
 import FAQ from "../Components/FAQ/FAQ";
 import FVArticle from "../Components/Resources/FVArticle";
-// import Regulations from "../Components/Resources/Regulations";
 import XBTFairValueCalc from "../Components/Resources/XBTFairValueCalc";
 import ContactUs from "../Components/ContactUs/ContactUs";
-// import Login from "../Components/Login2/Login2";
-// import cryptoLogo from "../images/cryptoLogo.png";
-// import AppBar from "material-ui/AppBar";
-// import Drawer from "material-ui/Drawer";
-// import MenuItem from "material-ui/MenuItem";
 import Paper from "material-ui/Paper";
-// import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../images/charnaTop.jpg";
-// import Button from "material-ui/IconButton";
-// import LoginScreen from "../Components/LoginScreen/LoginScreen";
-// import Footer from "../Components/Footer/foot.js";
-// import silverCoin from "../images/silverCoin.png";
 import AddCoins from "../Components/MyCoinsHeader/MyCoinsHeader";
-// import "./Main.css";
 import cryptoLogo from "../images/cryptoLogo.png";
+import Regulations from "../Components/Resources/Regulations";
 
 const paperStyle = {
   height: "85%",
@@ -72,7 +59,11 @@ const Main = props => {
             path="/resources/xbtFVCalculator"
             render={props => <XBTFairValueCalc />}
           />
-
+          <Route
+            exact
+            path="/resources/regulations"
+            render={props => <Regulations />}
+          />
           <Route exact path="/faq" render={props => <FAQ />} />
           <Route exact path="/contact" render={props => <ContactUs />} />
           <Route

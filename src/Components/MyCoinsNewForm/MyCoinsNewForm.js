@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewCoin, fetchCoins } from "../../store/actions/coins";
-// import MyCoinsDropDown from "../MyCoinsDropdown/MyCoinsDropdown";
 import TextField from "material-ui/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -13,7 +12,6 @@ const style = {
 class MyCoinsNewForm extends Component {
   constructor(props) {
     super(props);
-    // this.handleNewCoin = this.handleNewCoin.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       amount: "",

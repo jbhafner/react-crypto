@@ -1,29 +1,18 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
-// import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import AddCoins from "../MyCoinsHeader/MyCoinsHeader";
 import AppBar from "material-ui/AppBar";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
-// import backgroundImage from "../../images/charnaTop.jpg";
 import Blog from "../Blog/Blog";
 import Button from "@material-ui/core/Button";
 import ContactUs from "../ContactUs/ContactUs";
-// import cryptoLogo from "../../images/cryptoLogo.png";
 import Drawer from "material-ui/Drawer";
 import FAQ from "../FAQ/FAQ";
-// import FlatButton from "material-ui/FlatButton";
-// import Footer from "../Footer/foot.js";
 import FVArticle from "../Resources/FVArticle";
 import Home from "../Home/Home";
 import Login from "../Login2/Login2";
-// import LoginScreen from "../LoginScreen/LoginScreen";
-// import Menu from "material-ui/Menu";
 import MenuItem from "material-ui/MenuItem";
-// import MyCoinsHeader from "../MyCoinsHeader/MyCoinsHeader";
-// import Paper from "material-ui/Paper";
 import Regulations from "../Resources/Regulations";
-// import silverCoin from "../../images/silverCoin.png";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import { connect } from "react-redux";
 import { logout } from "../../store/actions/auth";
@@ -44,7 +33,7 @@ const style = {
 class NAVBar extends Component {
   constructor(props) {
     super(props);
-    const { classes } = props;
+    // const { classes } = props;
 
     this.state = {
       open: false,
@@ -87,6 +76,10 @@ class NAVBar extends Component {
     this.setState({ show: "xbt_fv", open: false });
   };
 
+  showRegulations = () => {
+    this.setState({ show: "regulations", open: false });
+  };
+
   showContact = () => {
     this.setState({ show: "contact", open: false });
   };
@@ -121,6 +114,10 @@ class NAVBar extends Component {
 
       case "xbt_fv":
         content = <XBTFairValueCalc />;
+        break;
+
+      case "regulations":
+        content = <Regulations />;
         break;
 
       case "contact":
@@ -217,7 +214,11 @@ class NAVBar extends Component {
                 containerElement={<Link to="/resources/xbtFVCalculator" />}
                 primaryText="Bitcoin Futures Fair Value Calculator"
               />,
-              <MenuItem primaryText="Other2" />,
+              <MenuItem
+                onClick={this.showRegulations}
+                containerElement={<Link to="/resources/regulations" />}
+                primaryText="Regulations"
+              />,
               <MenuItem primaryText="Other3" />
             ]}
           />

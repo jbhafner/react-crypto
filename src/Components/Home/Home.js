@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import RaisedButtonSimple from "../Buttons/RaisedButton.js";
-import axios from "axios";
 import NumberFormat from "react-number-format";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import CryptoChart from "../CryptoChart/CryptoChart.js";
@@ -40,13 +39,7 @@ class Home extends Component {
     };
   } // close constructor()
 
-  componentWillMount() {
-    // this.getChartData();
-    // this.getCryptoChartData();
-  }
-
   componentDidMount() {
-    // this.props.fetchUser();
     this.getCryptoChartData();
     this.getCurrentPriceData();
   }
