@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { postNewCoin, fetchCoins } from "../../store/actions/coins";
 import TextField from "material-ui/TextField";
 import Button from "@material-ui/core/Button";
-
+import MyCoinsAutoComplete from "../MyCoinsAutoComplete/MyCoinsAutoComplete";
 const style = {
   margin: "5px",
   color: "white"
@@ -63,6 +63,7 @@ class MyCoinsNewForm extends Component {
     return (
       <form onSubmit={this.handleNewCoin}>
         {this.props.errors.message && <div>{this.props.errors}</div>}
+        <MyCoinsAutoComplete />
         <TextField
           type="text"
           name="symbol"

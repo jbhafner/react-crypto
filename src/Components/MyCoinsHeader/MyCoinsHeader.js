@@ -40,6 +40,7 @@ class MyCoinsHeader extends Component {
     let id = this.props.id;
     console.log("called getMyCoins from componentDidMount - id = ", id);
     this.props.fetchCoins(id);
+    this.props.getAllCoins();
     // this.updateMyCoinPrices();
   }
 
@@ -94,7 +95,7 @@ class MyCoinsHeader extends Component {
   render() {
     const { coins } = this.props;
     console.log("MyCoinsHeader.js - this.props", this.props);
-    console.log("MyCoinsHeader.js - coins", coins);
+    console.log("MyCoinsHeader.js - this.props.myCoins", this.props.myCoins);
     // console.log("MyCoinsHeader.js - coins.myCoins", coins.myCoins);
     let myCoinList = this.props.myCoins.map(val => (
       <CoinItem

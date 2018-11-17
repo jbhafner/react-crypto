@@ -44,7 +44,7 @@ function handleRemoveCoin(id) {
 export function getAllCoins() {
   console.log("getAllCoins funtion called");
   return dispatch => {
-    return fetch("http://localhost:3025/api/coins/allCoins")
+    return fetch("http://localhost:3025/allCoins")
       .then(res => res.json())
       .then(data => dispatch(handleGetAllCoins(data)))
       .catch(err => console.log("Something went wrong!", err));

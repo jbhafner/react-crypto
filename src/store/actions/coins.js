@@ -8,6 +8,11 @@ import {
   REMOVE_MY_COIN
 } from "../actionCreators";
 
+// export const loadAllCoins = allCoins => ({
+//   type: GET_ALL_COINS,
+//   allCoins
+// });
+
 export const loadCoins = myCoins => ({
   type: GET_MY_COINS,
   myCoins
@@ -33,6 +38,22 @@ export const removeCoin = (user_id, coin_id) => {
       });
   };
 };
+
+// export const fetchAllCoins = () => {
+//   // const id = currentUser.user.id;
+//   console.log("fetchAllCoins called");
+//   return dispatch => {
+//     return apiCall("get", `/allCoins`)
+//       .then(res => {
+//         console.log("fetchCoins / res", res);
+//         dispatch(loadAllCoins(res));
+//       })
+//       .catch(err => {
+//         console.log("fetchAllCoins / catch called / err", err);
+//         dispatch(addError(err.message));
+//       });
+//   };
+// };
 
 export const fetchCoins = id => {
   // const id = currentUser.user.id;

@@ -28,6 +28,7 @@ export default (state = initialState, action) => {
         myCoins: [...state.myCoins, { ...action.coin }]
       };
     case REMOVE_MY_COIN:
+
       let coins = state.myCoins.filter(val => val._id !== action.id);
       return { ...state, myCoins: coins };
     default:
