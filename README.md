@@ -12,7 +12,7 @@ We wanted to develop an app to let people learn about crypto-currencies, and cry
 
 Technology:
 ----------------------------------------------------
-On the client side, I use React with the Material-ui design library.  
+On the client side, I use React with the Material-ui design library.  I use the react-chartjs-2 library for the chart.
 
 Material-ui: https://material-ui.com/
 
